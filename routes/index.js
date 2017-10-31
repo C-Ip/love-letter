@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var pg = require('pg');
-var conString = "postgres://trifoo:jm@localhost:5432/myapp";
+var conString = "postgres://aqfprdaxqkgkns:633f14ce675acb4943734371cb47d8f8004599e783f47da75e922728b9c3647c@ec2-184-73-247-240.compute-1.amazonaws.com:5432/d65rfqd63aijae";
 
 var db = new pg.Client(conString);
 db.connect();
