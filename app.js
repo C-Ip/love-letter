@@ -11,7 +11,7 @@ var tests = require('./routes/tests');
 var login = require('./routes/login');
 var gameLobby = require('./routes/gamelobby');
 var game = require('./routes/game');
-var registration = require('./routes/registration);
+var registration = require('./routes/registration');
 
 var app = express();
 
