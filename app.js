@@ -33,7 +33,7 @@ app.use('/tests', tests);
 app.use('/gamelobby', gameLobby);
 app.use('/game', game);
 app.use('/login', login);
-app.use('registration', registration);
+app.use('/registration', registration);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
