@@ -3,6 +3,10 @@ body {
   padding-bottom: 30px;
 }
 
+a:hover {
+  background-color: #FF5050;
+}
+
 .theme-dropdown .dropdown-menu {
   position: static;
   display: block;
@@ -15,4 +19,18 @@ body {
 
 .theme-showcase .navbar .container {
   width: auto;
+}
+
+#rules {
+  cursor: pointer;
+}
+
+#menu {
+  left: 400px;
+  text-align: left;
+  width: 20%;
+}
+
+#special {
+ font-style: italic;
 }
