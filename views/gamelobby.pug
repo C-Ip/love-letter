@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  script(src='/socket.io/socket.io.js')
+  link(rel='stylesheet', href='/stylesheets/chat.css')
+  // Prints the message in chatbox
+  script.
+    $(function () {
+      var socket = io();
+      $('form').submit(function() {
+        socket.emit('chat message', $('#m').val());
+        $('#m').val('');
+        return false;
+      });
+      socket.on('chat message', function(msg) {
+        $('#messages').append($('<li>').text(msg));
+      });
+    });
+
+  body
+    #chatbox
+      ul#messages
+        form(action='')
+          input#m(autocomplete='off')
+          button Send
+
