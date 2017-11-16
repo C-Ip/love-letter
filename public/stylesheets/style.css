@@ -7,10 +7,6 @@ a:hover {
   background-color: #FF5050;
 }
 
-.GameButtons{
-  position: absolute;
-}
-
 .theme-dropdown .dropdown-menu {
   position: static;
   display: block;
