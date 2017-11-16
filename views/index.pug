@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  button(type='button') Create Game
+  a.button(href='/gamelobby', class='btn btn-primary bth-md') Create Game
   script(src='/socket.io/socket.io.js')
   link(rel='stylesheet', href='/stylesheets/chat.css')
   // Prints the message in chatbox
