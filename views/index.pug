@@ -1,8 +1,10 @@
 extends layout
 
 block content
+  button(type='button') Create Game
   script(src='/socket.io/socket.io.js')
   link(rel='stylesheet', href='/stylesheets/chat.css')
+  link(rel='stylesheet', href='/stylesheets/style.css')
   // Prints the message in chatbox
   script.
     $(function () {
