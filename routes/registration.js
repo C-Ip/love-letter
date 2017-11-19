@@ -10,6 +10,7 @@ router.get('/', (request, respond) => {
 router.post('/', (request, respond) => {
   console.log('POST request on /registration');
 
+  // I'll just have page reload when passwords do not match for now
   if (request.body.password !== request.body.confirmPassword) {
     console.log('redirecting...')
     respond.redirect('/registration');
