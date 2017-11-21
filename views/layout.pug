@@ -2,6 +2,30 @@ doctype html
 html
   head
     title= title
+    link(href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css", rel="stylesheet", integrity="sha384-zF4BRsG/fLiTGfR9QL82DrilZxrwgY/+du4p/c7J72zZj+FLYq4zY00RylP9ZjiT", crossorigin="anonymous")
     link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+    script(src='/socket-io/socket.io.js')
+    script.
+      $(document).ready(function(){
+        $('[data-toggle="popover"]').popover();
+      });
+
   body
-    block content
+    nav.navbar.navbar-inverse.navbar-fixed-top
+     .container
+       .navbar-header
+         a.navbar-brand(href='/') Home
+         a#rules.navbar-brand.dropdown-toggle(data-toggle='dropdown') How To Play
+         ul#menu.dropdown-menu(role='menu', aria-labelledby='dropdownMenu1')
+           p 1. Each player is dealt one card at the beginning of the game.
+           p 2. Each player draws a card at the beginning of their turn.
+           p 3. You will then choose one card to discard from your hand.
+           p 4. Perform the action on the discarded card.
+           p 5. That is the end of a player's turn.
+           p#special *Win condition: If only one player is still in the round, they win. Otherwise all players reveal their hands. The player with the highest ranked card wins the round.
+       a.navbar-brand.pull-right(href='/registration') Register  
+       a.navbar-brand.pull-right(href='/login') Login  
+
+block content

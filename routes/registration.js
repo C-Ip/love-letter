@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', (req, res) => {
-  res.render('gamelobby', {title: 'Game Lobby Page'});
+router.get('/', (request, respond) => {
+  respond.render('registration', { title: 'Registration Page' });
 });
 
 module.exports = router;
