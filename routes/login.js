@@ -15,7 +15,7 @@ router.post('/', (request, respond) => {
   /*redirects to homepage if login successful, else
   refreshes to login page*/
   db.any(confirm).then(results => {
-    if (results) {
+    if (results == 0) {
       console.log('login successful')
       respond.redirect('/');
     } else {
