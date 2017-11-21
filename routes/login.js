@@ -9,9 +9,20 @@ router.get('/', (request, respond) => {
 
 router.post('/', (request, respond) => {
   console.log('POST request on /login');
-  const confirm = '';
+  const confirm = 'SELECT IF(' + request.body.username + '=username, 0, 1) \
+  AND IF(' + request.body.password + '=password, 0, 1) FROM players';
 
-  db.any(confirm);
+  /*redirects to homepage if login successful, else
+  refreshes to login page*/
+  db.any(confirm).then(results => {
+    if (results) {
+      console.log('login successful')
+      respond.redirect('/');
+    } else {
+      console.log('unmatched credentials');
+      respond.redirect('/login');
+    }
+  });
 });
 
 module.exports = router;
