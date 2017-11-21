@@ -5,7 +5,7 @@ block content
     .row
       .col-md-6.col-md-offset-3
         h1.display-4.m-b-2 Registration
-        form(method='POST' action='/registration')
+        form(name='register' action='/registration' method='POST' onsubmit='return validateRegistrationForm()')
           div.form-group
             label(for='username') Username
             input.form-control(type='text' id='username' placeholder='Username' name='username')
@@ -15,5 +15,6 @@ block content
           div.form-group
             label(for='passwordConfirmation') Confirm Password
             input.form-control(type='password' id='confirmPassword' placeholder='Re-enter Password' name='confirmPassword')
-          button.btn.btn-primary(id='register', type='submit') Register 
+          button.btn.btn-primary(id='register', type='submit') Register
+          script(src='/javascripts/register.js') 
 
