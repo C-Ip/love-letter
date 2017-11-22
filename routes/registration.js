@@ -17,11 +17,28 @@ router.post('/', (request, respond) => {
   } else {
     console.log('Username: ' + request.body.username);
     console.log('Password: ' + request.body.password);
-    const insert = 'INSERT INTO players (username, password) VALUES \
-    (' + request.body.username + ', ' + request.body.password + ')';
+/*
+    const insert = 'INSERT INTO players(username, password) VALUES \
+    (\"' + request.body.username + '\", \"' + request.body.password + '\");';
+*/
 
-    db.any(insert);
+
+    db.none('INSERT INTO players(username,password) VALUES($1,$2)',[request.body.username, request.body.password])
+    .then( _ => {
+      console.log('successful');
+    }).catch(error => {
+      console.log(error);
+      respond.json(error);
+    });
   }
+
+/*
+    db.one('select * from players where username=$1 and password=$2',
+  [request.body.username, request.body.password]).then( _ => console.log('hi')).catch(error => {
+    respond.json(error);
+  });
+*/
+
 });
 
 module.exports = router;
