@@ -25,7 +25,42 @@ html
            p 4. Perform the action on the discarded card.
            p 5. That is the end of a player's turn.
            p#special *Win condition: If only one player is still in the round, they win. Otherwise all players reveal their hands. The player with the highest ranked card wins the round.
-       a.navbar-brand.pull-right(href='/registration') Register  
-       a.navbar-brand.pull-right(href='/login') Login  
+       a.navbar-brand.pull-right(href='/registration' data-toggle='modal' role='button',data-target='#modalRegister') Register
+       a.navbar-brand.pull-right(href='#' data-toggle='modal' role='button' data-target='#modalLogin') Login
 
+div(id='modalRegister',class='modal fade',tabindex ='-1',role ='dialog')
+    div(class='modal-content')
+      form(method='POST' action='/registration')
+      div(class='modal-header')
+        button(type='button',class='close',data-dismiss='modal') close
+        h4(class='modal-titles') Register
+      div(class='modal-body')
+        div.form-group
+        label(for='username') Username
+        input.form-control(type='text' id='usernameReg' placeholder='enter username')
+        div.form-group
+        label(for='password') Password
+        input.form-control(type='password' id ='passwordReg' placeholder='enter password')
+        div.form-group
+        label(for='confirm') Confirm Password
+        input.form-control(type='password' id='confirmPassword' placeholder='confirm password')
+      div(class='modal-footer')
+        button.btn.btn-primary(id='register',type='submit') Register
+
+
+div(id = 'modalLogin',class='modal fade',tabindex = '-1',role='dialog')
+    div(class='modal-content')
+      div(class='modal-header')
+        button(type='button',class= 'close',data-dismiss = 'modal') close
+        h4(class='modal-titles') Login
+      div(class='modal-body')
+        form(method='POST' action = '/login')
+        div.form-group
+        label(for='username') Username
+        input#username_login(type='text',placeholder='enter username')
+        div.form-group
+        label(for='password') Password
+        input#password_login(type='password',placeholder='enter password')
+      div(class='modal-footer')
+        button.btn.btn-primary(id ='login',type='submit') Login
 block content
