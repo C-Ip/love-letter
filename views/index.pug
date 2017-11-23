@@ -1,10 +1,10 @@
 extends layout
 
 block content
-  a.button(href='/gamelobby', class='btn btn-primary bth-md') Create Game
   script(src='/socket.io/socket.io.js')
+  script(src='/javascripts/lobby.js')
   link(rel='stylesheet', href='/stylesheets/chat.css')
-  // Prints the message in chatbox
+  <!-- Prints the message in chatbox
   script.
     $(function () {
       var socket = io();
@@ -17,10 +17,12 @@ block content
         $('#messages').append($('<li>').text(msg));
       });
     });
-
+    -->
   body
     #chatbox
       ul#messages
-        form(action='')
+        form#chat(action='')
           input#m(autocomplete='off')
           button Send
+  form#creategames(action='/gamelobby' method='POST')
+    button( type='submit') Create Game
