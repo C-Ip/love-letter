@@ -25,7 +25,7 @@ body {
 }
 
 #chatbox {
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   right: 1px;
   width: 30.3%;
@@ -45,3 +45,4 @@ body {
 #messages li:nth-child(odd) {
   background: #eee;
 }
+
