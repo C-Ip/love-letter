@@ -17,8 +17,8 @@ router.post('/', (request, response) => {
     console.log("Login successful");
     request.session.username = data.username;
     request.session.player_id = data.playerid;
-    //response.cookie('username', data.username);
-    //response.cookie('user_id', data.playerid);
+    response.cookie('username', data.username);
+    response.cookie('user_id', data.playerid);
     response.redirect('/');
   })
   .catch( error => {
