@@ -17,7 +17,7 @@ router.post('/', (request, response) => {
   } else {
     console.log('Username: ' + request.body.username);
     console.log('Password: ' + request.body.password);
-     db.none('INSERT INTO players(username,password,wins) VALUES($1,$2,$3)',[request.body.username, request.body.password, '0'])
+    db.none('INSERT INTO players(username,password,wins) VALUES($1,$2,$3)',[request.body.username, request.body.password, '0'])
     .then( _ => {
       console.log('successful');
       response.redirect('/login');

@@ -3,9 +3,8 @@
 /**
  * Module dependencies.
  */
-
 var app = require('../app');
-var debug = require('debug')('myapp:server');
+var debug = require('debug')('loveletter:server');
 var http = require('http');
 const socket = require('../socket/');
 
@@ -17,11 +16,12 @@ var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
- * Create HTTP server.
+ * Connect to server
  */
 
 var server = http.createServer(app);
 socket.init(app, server);
+
 
 /**
  * Listen on provided port, on all network interfaces.

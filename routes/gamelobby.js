@@ -8,16 +8,23 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (request, response, next) => {
-  db.one('INSERT INTO game(playerturn) VALUES($1) RETURNING gameid', ['0'])
-  .then( data => {
-    console.log("Room created");
-    console.log(data.gameid);
-    var gameRoomId = data.gameid;
-    db.none('INSERT INTO playergame(playerid, gameid) VALUES($1, $2)', [request.session.player_id, gameRoomId])
+  if(request.session.player_id == null) {
+    response.redirect('/login');
+  } 
+  else {
+    db.one('INSERT INTO game(playerturn) VALUES($1) RETURNING gameid', ['0'])
     .then( data => {
-      console.log("Player added to game lobby");
+      console.log("Room created");
+      console.log(data.gameid);
+      var gameRoomId = data.gameid;
+      console.log(request.session.player_id);
+      db.none('INSERT INTO playergame(playerid, gameid) VALUES($1, $2)', [request.session.player_id, gameRoomId])
+      .then( data => {
+        console.log("Player added to game lobby");
+        response.redirect('/gamelobby');
+      })
     })
-  })
+  }
 });
 
 module.exports = router;
