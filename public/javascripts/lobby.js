@@ -11,6 +11,8 @@ $(function () {
     return false;
   });
 
+  $('[data-toggle="popover"]').popover();
+
   //$('#games').append($("<button>Join Game</button>"));
   /*
   $(".create-room").on("submit", () =>

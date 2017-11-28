@@ -24,26 +24,26 @@ a:hover {
 
 #games {
   position: fixed;
-  top: 100px;
-  left: 30px;
-  width: 25%;
-  height: 300px;
+  top: 10%;
+  left: 3%;
+  width: 30%;
+  height: 50%;
   border: 3px solid #73AD21;
 }
 
 #gamelobby {
   position: fixed;
-  top: 100px;
-  left: 30px;
-  width: 25%;
-  height: 300px;
+  top: 10%;
+  left: 3%;
+  width: 30%;
+  height: 50%;
   border: 3px solid #73AD21;
 }
 
 #creategames {
   position: fixed;
-  top: 400px;
-  left: 280px;
+  top: 60%;
+  left: 25%;
 }
 
 #rules {
@@ -51,7 +51,7 @@ a:hover {
 }
 
 #menu {
-  left: 400px;
+  left: 15%;
   text-align: left;
   width: 20%;
 }
