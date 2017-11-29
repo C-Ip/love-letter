@@ -4,7 +4,7 @@ this.discards = [];
 fillDeck( this.deck );
 }
 
-//fills deck with ints which will represent the cards and values
+//fills deck with ints which will represent the cards
 function fillDeck( deck ){
 deck.push('1');
 deck.push('1');
