@@ -3,8 +3,9 @@ const USER_ID = 'user-id';
 const USER_NAME = 'username';
 const ROOM_CREATED = 'room-created';
 
+var socket = io();
+
 $(function () {
-  var socket = io();
   $('#chat').submit(function() {
     socket.emit('chat message', $('#m').val());
     $('#m').val('');
@@ -14,18 +15,21 @@ $(function () {
   $('[data-toggle="popover"]').popover();
 
   //$('#games').append($("<button>Join Game</button>"));
-  /*
-  $(".create-room").on("submit", () =>
+
+  $(".create-room").on("submit", () => {
     socket.emit(ROOM_CREATED, {userid: 1});
   });
-  */
+
+
+  $('#startgame').submit( function() {
+    socket.emit('startgame', {gameid: 1});
+  });
+
   socket.on('chat message', function(msg) {
     $('#messages').append($('<li>').text(msg));
   });
-
+  
   socket.on(ROOM_CREATED, (data) => {
     $.cookie(ROOM_ID, data, {path: "/"});
-    window.location = "/gamelobby";
   });
-  
 });
