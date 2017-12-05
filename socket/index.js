@@ -17,7 +17,8 @@ const init = (app, server) => {
     // Creates a shuffled deck for the game
     socket.on('startgame', (data) => {
       deckCreation.createDeck(deck);
-      console.log(deck);
+      //console.log(deck);
+      io.emit('startgame',deck)
     });
 
   });
