@@ -1,8 +1,24 @@
-#gamecanvas {
+#gamecontainer {
   position: fixed;
   width: 65%;
   height: 90%;
   left: 2%;
   top: 8%;
   border: 3px solid #000000;
+}
+
+#playcard {
+  position: fixed;
+  left: 27%;
+  bottom: 5%;  
+}
+
+#deck {
+  position: fixed;
+  width: 8%;
+  height: 17%;
+  background: url(dice.png);
+  left: 27%;
+  top: 42%;
+  border: 1px solid #000000;
 }

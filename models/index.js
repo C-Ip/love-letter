@@ -1,46 +1,26 @@
 'use strict';
 
-var db = require('../db');
+const passport = require('passport');
+const db = require('../db');
+var bcrypt = require('bcryptjs');
+var salt = bcrypt.genSaltSync(5);
 
 module.exports = {
   createUser: function(request) {
-    return db.none('INSERT INTO players(username, password) VALUES(${username}, ${password})', request.body); 
+    var password = bcrypt.hashSync(request.body.password, salt);
+    return db.none("INSERT INTO players(username, password) VALUES('"+ request.body.username +"', '" + request.body.password + "')");
   },
   
-  verifyLogin: function(username, password) {
-    return db.one('SELECT * FROM players WHERE username = $1 AND password = $2', [username, password]);
-    
+  verifyLogin: function(request, response) {
+    var submittedPassword = bcrypt.hashSync(request.body.password, salt);
+    return db.one('SELECT * FROM players WHERE username = $1', [request.body.username])
   },
 
-  createDeck: (deck) => {
-    deck.push('1');
-    deck.push('1');
-    deck.push('1');
-    deck.push('1');
-    deck.push('1');
-    deck.push('2');
-    deck.push('2');
-    deck.push('3');
-    deck.push('3');
-    deck.push('4');
-    deck.push('4');
-    deck.push('5');
-    deck.push('5');
-    deck.push('6');
-    deck.push('7');
-    deck.push('8');
-    //shuffles deck
-    var i, j, tempi, tempj;
-    for( i=0;i< deck.length;i+=1 ){
-      j = Math.floor( Math.random() * ( i + 1 ) );
-      tempi = deck[i];
-      tempj = deck[j];
-      deck[i] = tempj;
-    deck[j] = tempi;
-    }
+  getUserByUsername: function(username) {
+    return db.one('SELECT * FROM players WHERE username = $1', [username])
   },
-  
-  drawCard: (currentPlayer, deck) => {
-    deck.shift();  // Removes first card from deck
+
+  getUserById: function(id) {
+    return db.one('SELECT * FROM players WHERE playerid = $1', [id])
   }
 };

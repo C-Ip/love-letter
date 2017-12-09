@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../db');
+var db = require('../models/index');
 
 /* GET users listing. */
 router.get('/', (request, response) => {
@@ -9,39 +9,24 @@ router.get('/', (request, response) => {
 
 router.post('/', (request, response) => {
   console.log('POST request on /registration');
+  var username = request.body.username;
+  var password = request.body.password;
+  var confirmPassword = request.body.confirmPassword;
 
   // I'll just have page reload when passwords do not match for now
-  if (request.body.password != request.body.confirmPassword) {
+  if (password != confirmPassword) {
     console.log('redirecting...');
     response.redirect('/registration');
   } 
   else {
     console.log('Username: ' + request.body.username);
     console.log('Password: ' + request.body.password);
-    
-    /* Checks if username is already taken
-      
-    db.any('SELECT username FROM players')
-    .then( data => {
-      console.log(data[0].username);
-      /*
-      if(request.username == data.username) {
-        console.log("Username is already taken");
-        return false;
-      }
-      
-    });
-    */
-    db.none('INSERT INTO players(username,password,wins) VALUES($1,$2,$3)',[request.body.username, request.body.password, '0'])
-    .then( _ => {
-      console.log('successful');
-      response.redirect('/login');
-    }).catch(error => {
-      console.log(error);
-      response.json(error);
-    });
+
+    db.createUser(request)
+    .then( data => { 
+      response.render('login'); 
+    })  
   }
 
 });
-
 module.exports = router;
