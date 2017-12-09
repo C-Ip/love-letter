@@ -3,6 +3,7 @@ body {
   padding-bottom: 30px;
 }
 
+
 a:hover {
   background-color: #FF5050;
 }
@@ -21,12 +22,42 @@ a:hover {
   width: auto;
 }
 
+#games {
+  position: fixed;
+  top: 10%;
+  left: 3%;
+  width: 30%;
+  height: 50%;
+  border: 3px solid #73AD21;
+}
+
+#gamelobby {
+  position: fixed;
+  top: 10%;
+  left: 3%;
+  width: 30%;
+  height: 50%;
+  border: 3px solid #73AD21;
+}
+
+#creategames {
+  position: fixed;
+  top: 60%;
+  left: 25%;
+}
+
+#startgame {
+  position: fixed;
+  top: 60%;
+  left: 25%;
+}
+
 #rules {
   cursor: pointer;
 }
 
 #menu {
-  left: 400px;
+  left: 15%;
   text-align: left;
   width: 20%;
 }

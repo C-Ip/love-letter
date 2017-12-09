@@ -1,26 +1,18 @@
 extends layout
 
 block content
-  script(src='/socket.io/socket.io.js')
   link(rel='stylesheet', href='/stylesheets/chat.css')
-  // Prints the message in chatbox
-  script.
-    $(function () {
-      var socket = io();
-      $('form').submit(function() {
-        socket.emit('chat message', $('#m').val());
-        $('#m').val('');
-        return false;
-      });
-      socket.on('chat message', function(msg) {
-        $('#messages').append($('<li>').text(msg));
-      });
-    });
-
   body
     #chatbox
       ul#messages
-        form(action='')
+        form#chat(action='')
           input#m(autocomplete='off')
           button Send
-
+  #gamelobby
+    form#startgame(action='game' method='POST')
+      button(type='submit') START GAME
+  script(src='https://code.jquery.com/jquery-3.1.1.min.js', integrity='sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=', crossorigin='anonymous')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.5.3/jquery.timeago.min.js')
+  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa', crossorigin='anonymous')
+  script(src='/socket.io/socket.io.js')
+  script(src='/javascripts/lobby.js')

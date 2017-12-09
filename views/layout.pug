@@ -4,13 +4,12 @@ html
     title= title
     link(href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css", rel="stylesheet", integrity="sha384-zF4BRsG/fLiTGfR9QL82DrilZxrwgY/+du4p/c7J72zZj+FLYq4zY00RylP9ZjiT", crossorigin="anonymous")
     link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='https://code.jquery.com/jquery-3.1.1.min.js', integrity='sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=', crossorigin='anonymous')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.5.3/jquery.timeago.min.js')
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
-    script(src='/socket-io/socket.io.js')
-    script.
-      $(document).ready(function(){
-        $('[data-toggle="popover"]').popover();
-      });
+    script(src='/socket.io/socket.io.js')
+    script(src='/javascripts/lobby.js')
 
   body
     nav.navbar.navbar-inverse.navbar-fixed-top
@@ -25,7 +24,7 @@ html
            p 4. Perform the action on the discarded card.
            p 5. That is the end of a player's turn.
            p#special *Win condition: If only one player is still in the round, they win. Otherwise all players reveal their hands. The player with the highest ranked card wins the round.
-       a.navbar-brand.pull-right(href='/registration') Register  
-       a.navbar-brand.pull-right(href='/login') Login  
-
+       a#register.navbar-brand.pull-right(href='/registration') Register  
+       a#login.navbar-brand.pull-right(href='/login') Login
+       a#account.navbar-brand.pull-right(href='/users') My Account
 block content

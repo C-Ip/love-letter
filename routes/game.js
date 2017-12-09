@@ -3,7 +3,10 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', (req, res) => {
-  res.send('Game Page');
+  res.render('game', {title: 'Game Room'});
 });
 
+router.post('/', (request, response, next) => {
+  response.redirect('/game');
+});
 module.exports = router;

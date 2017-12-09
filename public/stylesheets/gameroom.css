@@ -1,0 +1,8 @@
+#gamecanvas {
+  position: fixed;
+  width: 65%;
+  height: 90%;
+  left: 2%;
+  top: 8%;
+  border: 3px solid #000000;
+}

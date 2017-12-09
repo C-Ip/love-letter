@@ -15,6 +15,10 @@ router.post('/', (request, response) => {
   db.one('SELECT * FROM players WHERE username = $1 AND password = $2', [request.body.username, request.body.password])
   .then(data => {
     console.log("Login successful");
+    request.session.username = data.username;
+    request.session.player_id = data.playerid;
+    response.cookie('username', data.username);
+    response.cookie('user_id', data.playerid);
     response.redirect('/');
   })
   .catch( error => {

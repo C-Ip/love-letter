@@ -3,10 +3,10 @@
 /**
  * Module dependencies.
  */
-
 var app = require('../app');
-var debug = require('debug')('myapp:server');
+var debug = require('debug')('loveletter:server');
 var http = require('http');
+const socket = require('../socket/');
 
 /**
  * Get port from environment and store in Express.
@@ -16,18 +16,11 @@ var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
- * Create HTTP server.
+ * Connect to server
  */
 
 var server = http.createServer(app);
-var socketIO = require('socket.io');
-var io = socketIO(server);
-
-io.on('connection', function(socket){
-  socket.on('chat message', function(msg) {
-    io.emit('chat message',  msg);
-  });
-});
+socket.init(app, server);
 
 
 /**

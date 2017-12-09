@@ -2,32 +2,33 @@ body {
   font:13px Helvetica, Arial;
 }
 
-form {
+#chat {
   background: #000;
   padding: 2px;
   position: fixed;
   bottom: 3px;
-  width: 30%;
+  width: 30.3%;
+  right: 1%;
 }
 
-form input {
+#chat input {
   border: 0;
   padding: 10px;
-  width: 90%;
+  width: 85%;
   margin-right: .5%;
 }
 
-form button {
-  width: 9%;
+#chat button {
+  width: 14%;
   background: rgb(130, 224, 255);
   border: none;
   padding: 10px;
 }
 
 #chatbox {
-  position: absolute;
-  bottom: 0px;
-  right: 1px;
+  position: fixed;
+  bottom: 6%;
+  right: 1%;
   width: 30.3%;
   height: 500px;
   border: 3px solid #73AD21;
@@ -45,3 +46,4 @@ form button {
 #messages li:nth-child(odd) {
   background: #eee;
 }
+
