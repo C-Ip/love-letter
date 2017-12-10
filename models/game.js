@@ -3,7 +3,7 @@
 var db = require('../db');
 
 module.exports = {
-  createDeck: (deck) => {
+  createDeck: (deck, removedCards) => {
     deck.push('1');
     deck.push('1');
     deck.push('1');
@@ -29,18 +29,33 @@ module.exports = {
       deck[i] = tempj;
       deck[j] = tempi;
     }
+    
+    // Remove two cards from deck
+    deck.pop();
+    deck.pop();
+  },
+  
+  startingHand: (deck, player1, player2, player3, player4) => {
+    player1.push(deck[0]);
+    deck.shift();
+    player2.push(deck[0]);
+    deck.shift();
+    player3.push(deck[0]);
+    deck.shift();
+    player4.push(deck[0]);
+    deck.shift();
   },
   
   drawCard: (currentPlayer, deck) => {
     curretPlayer.push(deck[0]);
-    deck.pop();  // Removes first card from deck
+    deck.shift();  // Removes first card from deck
   },
 
   playCard: (currentPlayer, card) => {
     if(card == 0) {
-      return currentPlayer.pop();
-    } else {
       return currentPlayer.shift();
+    } else {
+      return currentPlayer.pop();
     } 
   },
 
@@ -49,13 +64,13 @@ module.exports = {
     var targetPlayerCard = targetPlayer[0].value;
 
     if(currPlayerCard > targetPlayerCard) {
-      targetPlayer.pop();
+      targetPlayer.shift();
     }
     if(currPlayerCard == targetPlayerCard) {
       // Nothing happens display message
     }
     else {
-      currentPlayer.pop();
+      currentPlayer.shift();
     }
   }
 };

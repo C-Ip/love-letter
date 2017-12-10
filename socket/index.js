@@ -1,9 +1,12 @@
 const ROOM_CREATED = 'room-created';
+const JOIN_ROOM = 'join-room';
 
 const socketIO = require('socket.io');
-var db = require('../db');
-var game = require('../models/game.js');
+var db = require('../models/index');
+var game = require('../models/game');
 var deck = [];
+var removedCards = [];
+var discard = [];
 var player1 = [];
 var player2 = [];
 var player3 = [];
@@ -23,8 +26,14 @@ const init = (app, server) => {
     // Creates a shuffled deck for the game
     socket.on('startgame', (data) => {
       console.log(data);
-      game.createDeck(deck);
-      console.log(deck);
+      game.createDeck(deck, removedCards);
+      console.log("Deck: " + deck);
+      game.startingHand(deck, player1, player2, player3, player4);
+      console.log("Deck: " + deck);
+      console.log("Player1: " + player1);
+      console.log("Player2: " + player2);
+      console.log("Player3: " + player3);
+      console.log("Player4: " + player4);
     });
   });
 

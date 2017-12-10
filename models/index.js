@@ -22,5 +22,13 @@ module.exports = {
 
   getUserById: function(id) {
     return db.one('SELECT * FROM players WHERE playerid = $1', [id])
+  },
+
+  createRoom: function() {
+    return db.one('INSERT INTO game(playerturn) VALUES($1) RETURNING gameid', ['0'])
+  },
+  
+  joinRoom: function(request, gameRoomId) {
+    return db.none('INSERT INTO playergame(playerid, gameid) VALUES($1, $2)', [request.session.player_id, gameRoomId])
   }
 };
