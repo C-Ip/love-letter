@@ -47,7 +47,7 @@ module.exports = {
   },
   
   drawCard: (currentPlayer, deck) => {
-    curretPlayer.push(deck[0]);
+    currentPlayer.push(deck[0]);
     deck.shift();  // Removes first card from deck
   },
 
@@ -72,5 +72,38 @@ module.exports = {
     else {
       currentPlayer.shift();
     }
+  },
+
+  //Guard Card activated comes to this function
+  requestCards: (cardValue,targetPlayer)=>{
+    var targetPlayerCard = targetPlayer[0].value;
+    if (cardValue == targetPlayerCard) {
+      targetPlayer.pop();
+      console.log(targetPlayer + "lost");
+
+    }
+  },
+  // trade cards when prompted by card effect comes to this function
+  tradeCards: (currentPlayer,targetPlayer)=>{
+    var tempPlayerCard = currentPlayer[0].value;
+    var tempTargetCard = targetPlayer[0].value;
+    console.log(tempPlayerCard +" " + tempTargetCard);
+
+    currentPlayer[0] = tempTargetCard;
+    targetPlayer[0] = tempPlayerCard;
+    console.log(tempPlayerCard +" " + tempTargetCard);
+  },
+
+  // returns true if player has no cards left
+  playerCheck: (currentPlayer)=>{
+    if length(currentPlayer[0]==0){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
+
 };
+
+
