@@ -13,6 +13,7 @@ var player3 = [];
 var player4 = [];
 var turnCounter = 1;
 var cardToPlay = 0;
+var isProtected = [false,false,false,false]// not sure about this
 
 const init = (app, server) => {
   const io = socketIO(server);
