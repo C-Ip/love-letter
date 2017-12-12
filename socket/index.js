@@ -17,6 +17,7 @@ var isProtected = [false,false,false,false]// not sure about this
 
 const init = (app, server) => {
   const io = socketIO(server);
+  const io2 = socketIO();
   var nsp = io.of('/game');
   io.sockets.on('connection', (socket) => {
     // Messages display in chatbox
@@ -26,41 +27,47 @@ const init = (app, server) => {
 
     // Creates a shuffled deck for the game
     socket.on('startgame', (data) => {
-      console.log(data);
-      game.createDeck(deck, removedCards);
+        game.createDeck(deck, removedCards);
+        console.log("Deck: " + deck);
+        game.startingHand(deck, player1, player2, player3, player4);
+        console.log("Deck: " + deck);
+        console.log("Player1: " + player1);
+        console.log("Player2: " + player2);
+        console.log("Player3: " + player3);
+        console.log("Player4: " + player4);
+      });
 
-
-
-      console.log("Deck: " + deck);
-      game.startingHand(deck, player1, player2, player3, player4);
-      console.log("Deck: " + deck);
-      console.log("Player1: " + player1);
-      console.log("Player2: " + player2);
-      console.log("Player3: " + player3);
-      console.log("Player4: " + player4);
+      socket.on('playcard', (data) => {
+        console.log("Player plays a card");
+        if(turnCounter == 4) {
+          turnCounter = 1;
+        } else {
+          turnCounter++;
+        }
+        switch(turnCounter) {
+          case 1:
+            game.playCard(player1, cardToPlay);
+            console.log(player1);
+            break;
+          case 2:
+            game.playCard(player2, cardToPlay);
+            console.log(player2);
+            break;
+          case 3:
+            game.playCard(player3, cardToPlay);
+            console.log(player3);
+            break;
+          case 4:
+            game.playCard(player4, cardToPlay);
+            console.log(player4);
+            break;
+        }
+      });
     });
-  });
 
   nsp.on('connection', (socket) => {
     socket.on('chat message', (msg) => {
       io.to('/game').emit('chat message', msg);
-    });
-    socket.on('playcard', (data) => {
-      console.log("Player plays a card");
-      switch(turnCounter) {
-        case 1:
-          game.playCard(player1, cardToPlay);
-          break;
-        case 2:
-          game.playCard(player2, cardToPlay);
-          break;
-        case 3:
-          game.playCard(player3, cardToPlay);
-          break;
-        case 4:
-          game.playCard(player4, cardToPlay);
-          break;
-      }
     });
 
     socket.on('startTurn', () => {

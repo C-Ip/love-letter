@@ -5,7 +5,6 @@ const ROOM_CREATED = 'room-created';
 var game_id = 000000;
 
 var socket = io();
-const game = io('/game');
 
 $(function () {
   $('[data-toggle="popover"]').popover();
@@ -31,7 +30,7 @@ $(function () {
   socket.on('chat message', function(msg) {
     $('#messages').append($('<li>').text(msg));
   });
-  
+
   socket.on('chat message', (msg) => {
     io.emit('chat message',  msg);
   });
