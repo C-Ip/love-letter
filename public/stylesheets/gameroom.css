@@ -108,3 +108,9 @@
   width: 8%;
   height:19%;
 }
+
+.rotate180{
+  transform: rotate(180deg);
+  width: 8%;
+  height: 19%;
+}
