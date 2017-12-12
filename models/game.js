@@ -102,7 +102,36 @@ module.exports = {
     else{
       return false;
     }
+  },
+
+  checkDiscarded: (targetPlayer)=>{
+    if (targetPlayer[0].value = 8){
+      return true;
+    }
+    else {return false;}
+  },
+
+  countessCheck: (currentPlayer,drawnCard)=> {
+    if((currentPlayer[0].value == 5 || currentPlayer[0].value == 6) && drawnCard == 7 ){
+      currentPlayer.shift();
+      currentPlayer[0] = 7;
+    }
+  },
+
+  deckEmpty:(deck,removedCards)=>{
+    if (length(deck) == 0){
+      for (var i = length(removedCards), i>0 ,i--){
+        deck.insert(removedCards[i].value);
+      }
+      return true;
+    }
+    else {return false;}
+  },
+
+  cardPeek:(targetPlayer)=>{
+    return targetPlayer[0].value;
   }
+
 
 };
 
