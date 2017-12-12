@@ -96,7 +96,7 @@ module.exports = {
 
   // returns true if player has no cards left
   playerCheck: (currentPlayer)=>{
-    if length(currentPlayer[0]==0){
+    if (currentPlayer.length == 0){
       return true;
     }
     else{
@@ -120,7 +120,7 @@ module.exports = {
 
   deckEmpty:(deck,removedCards)=>{
     if (length(deck) == 0){
-      for (var i = length(removedCards), i>0 ,i--){
+      for (var i = removedCards.length; i > 0 ;i--){
         deck.insert(removedCards[i].value);
       }
       return true;
