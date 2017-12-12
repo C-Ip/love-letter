@@ -27,6 +27,9 @@ const init = (app, server) => {
     socket.on('startgame', (data) => {
       console.log(data);
       game.createDeck(deck, removedCards);
+
+
+
       console.log("Deck: " + deck);
       game.startingHand(deck, player1, player2, player3, player4);
       console.log("Deck: " + deck);

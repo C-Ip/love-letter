@@ -130,6 +130,12 @@ module.exports = {
 
   cardPeek:(targetPlayer)=>{
     return targetPlayer[0].value;
+  },
+
+  checkImmunity:(currentPlayer)=>{
+    if (currentPlayer[0].value = 4)
+      {return true;}
+    else{return false;}
   }
 
 
