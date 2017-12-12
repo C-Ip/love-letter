@@ -9,8 +9,15 @@
 
 #playcard {
   position: fixed;
-  left: 27%;
-  bottom: 5%;
+  left: 24%;
+  bottom: 3%;
+  visibility: hidden;
+}
+
+#endturn {
+  position: fixed;
+  left: 35%;
+  bottom: 3%;
   visibility: hidden;
 }
 
@@ -27,15 +34,69 @@
 #playerCard1_1 {
   position: fixed;
   width: 8%;
-  height: 17%;
+  height: 19%;
   left: 23%;
-  bottom: 15%;
+  bottom: 10%;
 }
 
 #playerCard1_2 {
   position: fixed;
   width: 8%;
-  height: 17%;
+  height: 19%;
   left: 34%;
-  bottom: 15%;
+  bottom: 10%;
+}
+
+#playerCard2_1 {
+  position: fixed;
+  width: 12%;
+  height: 15%;
+  left: 50%;
+  top: 34%;
+  border: 1px solid #000000;
+}
+
+#playerCard2_2 {
+  position: fixed;
+  width: 12%;
+  height: 15%;
+  left: 50%;
+  top: 55%;
+  border: 1px solid #000000;
+}
+
+#playerCard3_1 {
+  position: fixed;
+  width: 8%;
+  height: 19%;
+  left: 23%;
+  top: 12%;
+  border: 1px solid #000000;
+}
+
+#playerCard3_2 {
+  position: fixed;
+  width: 8%;
+  height: 19%;
+  left: 34%;
+  top: 12%;
+  border: 1px solid #000000;
+}
+
+#playerCard4_1 {
+  position: fixed;
+  width: 12%;
+  height: 15%;
+  left: 5%;
+  top: 34%;
+  border: 1px solid #000000;
+}
+
+#playerCard4_2 {
+  position: fixed;
+  width: 12%;
+  height: 15%;
+  left: 5%;
+  top: 55%;
+  border: 1px solid #000000;
 }

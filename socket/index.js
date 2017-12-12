@@ -39,11 +39,6 @@ const init = (app, server) => {
 
       socket.on('playcard', (data) => {
         console.log("Player plays a card");
-        if(turnCounter == 4) {
-          turnCounter = 1;
-        } else {
-          turnCounter++;
-        }
         switch(turnCounter) {
           case 1:
             game.playCard(player1, cardToPlay);
@@ -63,28 +58,34 @@ const init = (app, server) => {
             break;
         }
       });
+
+      socket.on('startTurn', () => {
+        if(turnCounter == 4) {
+          turnCounter = 1;
+        } else {
+          turnCounter += 1;
+        }
+        console.log('Player ' + turnCounter + ' turn');
+        switch(turnCounter) {
+          case 1:
+            game.drawCard(player1, deck);
+            break;
+          case 2:
+            game.drawCard(player2, deck);
+            break;
+          case 3:
+            game.drawCard(player3, deck);
+            break;
+          case 4:
+            game.drawCard(player4, deck);
+            break;
+        }
+      });
     });
 
   nsp.on('connection', (socket) => {
     socket.on('chat message', (msg) => {
       io.to('/game').emit('chat message', msg);
-    });
-
-    socket.on('startTurn', () => {
-      switch(turnCounter) {
-        case 1:
-          game.drawCard(player1, deck);
-          break;
-        case 2:
-          game.drawCard(player2, deck);
-          break;
-        case 3:
-          game.drawCard(player3, deck);
-          break;
-        case 4:
-          game.drawCard(player4, deck);
-          break;
-      }
     });
 
     // May not be needed

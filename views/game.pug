@@ -11,8 +11,15 @@ block content
           button Send
   #gamecontainer
     button#playcard(onclick='playFunction()') Play Card
+    button#endturn(onclick='endTurnFunction()') End Turn
     img#playerCard1_1(src='images/guard.jpg' onclick='selectCard(this)')
     img#playerCard1_2(src='images/4.jpg' onclick='selectCard(this)')
+    img#playerCard2_1
+    img#playerCard2_2
+    img#playerCard3_1
+    img#playerCard3_2
+    img#playerCard4_1
+    img#playerCard4_2
     img#deck(src='images/l5r.jpeg')
 
   script(src='https://code.jquery.com/jquery-3.1.1.min.js', integrity='sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=', crossorigin='anonymous')
