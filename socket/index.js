@@ -30,6 +30,10 @@ const init = (app, server) => {
         game.createDeck(deck, removedCards);
         console.log("Deck: " + deck);
         game.startingHand(deck, player1, player2, player3, player4);
+        io.emit('onDraw',{
+          first : player1[0],
+          second : player1[1]
+          });
         console.log("Deck: " + deck);
         console.log("Player1: " + player1);
         console.log("Player2: " + player2);

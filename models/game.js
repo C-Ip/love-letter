@@ -29,12 +29,12 @@ module.exports = {
       deck[i] = tempj;
       deck[j] = tempi;
     }
-
+    
     // Remove two cards from deck
     deck.pop();
     deck.pop();
   },
-
+  
   startingHand: (deck, player1, player2, player3, player4) => {
     player1.push(deck[0]);
     deck.shift();
@@ -45,7 +45,7 @@ module.exports = {
     player4.push(deck[0]);
     deck.shift();
   },
-
+  
   drawCard: (currentPlayer, deck) => {
     currentPlayer.push(deck[0]);
     deck.shift();  // Removes first card from deck
@@ -56,7 +56,7 @@ module.exports = {
       return currentPlayer.shift();
     } else {
       return currentPlayer.pop();
-    }
+    } 
   },
 
   compareCards: (currentPlayer, targetPlayer) => {
@@ -136,6 +136,9 @@ module.exports = {
     if (currentPlayer[0].value = 4)
       {return true;}
     else{return false;}
-  },
+  }
+
 
 };
+
+
