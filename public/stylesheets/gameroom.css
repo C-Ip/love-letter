@@ -49,8 +49,7 @@
 
 #playerCard2_1 {
   position: fixed;
-  width: 12%;
-  height: 15%;
+
   left: 50%;
   top: 34%;
   border: 1px solid #000000;
@@ -58,8 +57,7 @@
 
 #playerCard2_2 {
   position: fixed;
-  width: 12%;
-  height: 15%;
+
   left: 50%;
   top: 55%;
   border: 1px solid #000000;
@@ -85,8 +83,7 @@
 
 #playerCard4_1 {
   position: fixed;
-  width: 12%;
-  height: 15%;
+ 
   left: 5%;
   top: 34%;
   border: 1px solid #000000;
@@ -94,9 +91,20 @@
 
 #playerCard4_2 {
   position: fixed;
-  width: 12%;
-  height: 15%;
+
   left: 5%;
   top: 55%;
   border: 1px solid #000000;
+}
+
+.rotate90 {
+  transform : rotate(90deg);
+  width: 8%;
+  height: 19%;
+}
+
+.rotate_90{
+  transform :rotate(-90deg);
+  width: 8%;
+  height:19%;
 }
