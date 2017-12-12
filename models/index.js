@@ -10,7 +10,7 @@ module.exports = {
     var password = bcrypt.hashSync(request.body.password, salt);
     return db.none("INSERT INTO players(username, password) VALUES('"+ request.body.username +"', '" + request.body.password + "')");
   },
-  
+
   verifyLogin: function(request, response) {
     var submittedPassword = bcrypt.hashSync(request.body.password, salt);
     return db.one('SELECT * FROM players WHERE username = $1', [request.body.username])
@@ -27,8 +27,12 @@ module.exports = {
   createRoom: function() {
     return db.one('INSERT INTO game(playerturn) VALUES($1) RETURNING gameid', ['0'])
   },
-  
+
   joinRoom: function(request, gameRoomId) {
     return db.none('INSERT INTO playergame(playerid, gameid) VALUES($1, $2)', [request.session.player_id, gameRoomId])
+  },
+
+  getRoom: function() {
+    return db.one('SELECT * FROM game')
   }
 };

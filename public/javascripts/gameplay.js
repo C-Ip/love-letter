@@ -9,7 +9,6 @@ for(i = 0; i < 8; i++) {
 
 document.getElementById('playerCard1_1').src = imageArray[1].src;
 document.getElementById('playerCard1_2').src = imageArray[5].src;
-
 function selectCard(id) {
   if(id.style.borderStyle == 'none') {
     id.style.border = '3px #1ec5e5';
@@ -18,12 +17,18 @@ function selectCard(id) {
   } else {
     id.style.borderStyle = 'none';
   }
-
   //document.getElementById('playerCard4_2').src = imageList[5];
 };
 
 function playFunction() {
-  socket.emit('playcard');
+  var cardChosen = 0;
+  if(document.getElementById('playerCard1_1').style.borderStyle == 'none') {
+    cardChosen = 1;
+  }
+  if(document.getElementById('playerCard1_2').style.borderStyle == 'none'){
+    cardChosen = 0;
+  }
+  socket.emit('playcard', {card: cardChosen});
   document.getElementById('playcard').style.visibility = 'hidden';
   document.getElementById('endturn').style.visibility = 'visible';
 };

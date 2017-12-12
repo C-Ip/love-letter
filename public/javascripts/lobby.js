@@ -6,9 +6,9 @@ var game_id = 000000;
 
 var socket = io();
 
-$(function () {
-  $('[data-toggle="popover"]').popover();
+var imageList = ['/images/guard.jpg', '/images/2.jpeg', '/images/3.jpg', '/images/4.jpg', '/images/5.jpg', '/images/6.jpeg', '/images/7.jpg', '/images/8.jpeg'];
 
+$(function () {
   $('#chat').submit(function() {
     socket.emit('chat message', $('#m').val());
     $('#m').val('');
@@ -33,5 +33,9 @@ $(function () {
 
   socket.on('chat message', (msg) => {
     io.emit('chat message',  msg);
+  });
+
+  socket.on('showHand', (player) => {
+    $('#playerCard1_1').attr('src', imageList[player[0]].src);
   });
 });

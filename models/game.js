@@ -46,6 +46,13 @@ module.exports = {
     deck.shift();
   },
 
+  showPlayerHand(currentPlayer, images) {
+    
+  },
+    //for(i = 0; i < currentPlayer.length; i++) {
+
+    //}
+
   drawCard: (currentPlayer, deck) => {
     currentPlayer.push(deck[0]);
     deck.shift();  // Removes first card from deck
@@ -136,6 +143,6 @@ module.exports = {
     if (currentPlayer[0].value = 4)
       {return true;}
     else{return false;}
-  },
+  }
 
 };
