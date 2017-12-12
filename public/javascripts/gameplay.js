@@ -1,4 +1,5 @@
 var socket = io();
+
 var imageArray = new Array();
 var imageList = ['images/guard.jpg', '/images/2.jpeg', '/images/3.jpg', '/images/4.jpg', '/images/5.jpg', '/images/6.jpeg', '/images/7.jpg', '/images/8.jpeg'];
 for(i = 0; i < 8; i++) {
@@ -6,8 +7,8 @@ for(i = 0; i < 8; i++) {
   imageArray[i].src = imageList[i];
 }
 
-//document.getElementById('playerCard4_1').src = imageList[Player1[0]];
-//document.getElementById('playerCard1_1').src = imageList[5];
+document.getElementById('playerCard1_1').src = imageArray[1].src;
+document.getElementById('playerCard1_2').src = imageArray[5].src;
 
 function selectCard(id) {
   if(id.style.borderStyle == 'none') {
