@@ -1,6 +1,13 @@
 var socket = io();
-
+var imageArray = new Array();
 var imageList = ['images/guard.jpg', '/images/2.jpeg', '/images/3.jpg', '/images/4.jpg', '/images/5.jpg', '/images/6.jpeg', '/images/7.jpg', '/images/8.jpeg'];
+for(i = 0; i < 8; i++) {
+  imageArray[i] = new Image();
+  imageArray[i].src = imageList[i];
+}
+
+//document.getElementById('playerCard4_1').src = imageList[Player1[0]];
+//document.getElementById('playerCard1_1').src = imageList[5];
 
 function selectCard(id) {
   if(id.style.borderStyle == 'none') {
@@ -10,6 +17,8 @@ function selectCard(id) {
   } else {
     id.style.borderStyle = 'none';
   }
+
+  //document.getElementById('playerCard4_2').src = imageList[5];
 };
 
 function playFunction() {
