@@ -12,8 +12,11 @@ block content
   #gamecontainer
     button#playcard Play Card
     img#deck(src='images/dice.png')
+    img#playerCard1_1(src='images/guard.jpg' onclick='selectCard(this)')
+    img#playerCard1_2(src='images/4.jpg' onclick='selectCard(this)')
   script(src='https://code.jquery.com/jquery-3.1.1.min.js', integrity='sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=', crossorigin='anonymous')
   script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.5.3/jquery.timeago.min.js')
   script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa', crossorigin='anonymous')
   script(src='/javascripts/lobby.js')
   script(src='/socket.io/socket.io.js')
+  script(src='/javascripts/gameplay.js')

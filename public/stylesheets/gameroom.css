@@ -10,15 +10,32 @@
 #playcard {
   position: fixed;
   left: 27%;
-  bottom: 5%;  
+  bottom: 5%;
 }
 
-#deck {
+#deck{
   position: fixed;
   width: 8%;
   height: 17%;
-  background: url(dice.png);
   left: 27%;
   top: 42%;
+  border: 1px solid #000000;
+}
+
+#playerCard1_1 {
+  position: fixed;
+  width: 8%;
+  height: 17%;
+  left: 23%;
+  bottom: 15%;
+  border: 1px solid #000000;
+}
+
+#playerCard1_2 {
+  position: fixed;
+  width: 8%;
+  height: 17%;
+  left: 34%;
+  bottom: 15%;
   border: 1px solid #000000;
 }
