@@ -83,7 +83,7 @@
 
 #playerCard4_1 {
   position: fixed;
-  
+
   left: 5%;
   top: 34%;
   border: 1px solid #000000;
@@ -107,4 +107,10 @@
   transform :rotate(-90deg);
   width: 8%;
   height:19%;
+}
+
+.rotate180{
+  transform: rotate(180deg);
+  width: 8%;
+  height: 19%;
 }
