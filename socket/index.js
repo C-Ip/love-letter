@@ -13,6 +13,7 @@ var player3 = [];
 var player4 = [];
 var turnCounter = 1;
 var cardToPlay = 0;
+var isProtected = [false,false,false,false]// not sure about this
 
 const init = (app, server) => {
   const io = socketIO(server);
@@ -27,6 +28,9 @@ const init = (app, server) => {
     socket.on('startgame', (data) => {
       console.log(data);
       game.createDeck(deck, removedCards);
+
+
+
       console.log("Deck: " + deck);
       game.startingHand(deck, player1, player2, player3, player4);
       console.log("Deck: " + deck);
