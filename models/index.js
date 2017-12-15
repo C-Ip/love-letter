@@ -3,16 +3,19 @@
 const passport = require('passport');
 const db = require('../db');
 var bcrypt = require('bcryptjs');
-var salt = bcrypt.genSaltSync(5);
+var salt = bcrypt.genSaltSync(10);
 
 module.exports = {
-  createUser: function(request) {
-    var password = bcrypt.hashSync(request.body.password, salt);
-    return db.none("INSERT INTO players(username, password) VALUES('"+ request.body.username +"', '" + request.body.password + "')");
+  createUser: function(request, response) {
+    bcrypt.hash(request.body.password, 10, function(err, hash) {
+      db.none("INSERT INTO players(username, password) VALUES('"+ request.body.username +"', '" + hash + "')")
+      .then( function() {
+        response.redirect('/login');
+      });
+    });
   },
 
   verifyLogin: function(request, response) {
-    var submittedPassword = bcrypt.hashSync(request.body.password, salt);
     return db.one('SELECT * FROM players WHERE username = $1', [request.body.username])
   },
 

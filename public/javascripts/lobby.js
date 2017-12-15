@@ -23,19 +23,7 @@ $(function () {
     socket.emit('startgame', {gameid: game_id});
   });
 
-  socket.on('startgame', function() {
-    drawDeck(context);
-  });
-
   socket.on('chat message', function(msg) {
     $('#messages').append($('<li>').text(msg));
-  });
-
-  socket.on('chat message', (msg) => {
-    io.emit('chat message',  msg);
-  });
-
-  socket.on('showHand', (player) => {
-    $('#playerCard1_1').attr('src', imageList[player[0]].src);
   });
 });

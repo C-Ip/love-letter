@@ -2,7 +2,7 @@ extends layout
 
 block content
   link(rel='stylesheet', href='/stylesheets/chat.css')
-  link(rel='stylesheet', href='/stylesheets/gameroom.css')
+  link(id = 'basic', rel='stylesheet', href='/stylesheets/gameroom.css')
   body
     #chatbox
       ul#messages
@@ -10,6 +10,7 @@ block content
           input#m(autocomplete='off')
           button Send
   #gamecontainer
+    p Hello
     button#playcard(onclick='playFunction()') Play Card
     button#endturn(onclick='endTurnFunction()') End Turn
     img#playerCard1_1(onclick='selectCard(this)')
@@ -28,4 +29,3 @@ block content
   script(src='/javascripts/lobby.js')
   script(src='/socket.io/socket.io.js')
   script(src='/javascripts/gameplay.js')
-  script(src='/models/game.js')

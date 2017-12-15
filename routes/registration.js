@@ -17,15 +17,12 @@ router.post('/', (request, response) => {
   if (password != confirmPassword) {
     console.log('redirecting...');
     response.redirect('/registration');
-  } 
+  }
   else {
     console.log('Username: ' + request.body.username);
     console.log('Password: ' + request.body.password);
 
-    db.createUser(request)
-    .then( data => { 
-      response.render('login'); 
-    })  
+    db.createUser(request, response);
   }
 
 });

@@ -29,10 +29,11 @@ module.exports = {
       deck[i] = tempj;
       deck[j] = tempi;
     }
-
+    console.log("Shuffled Deck: " + deck);
     // Remove two cards from deck
     deck.pop();
     deck.pop();
+    console.log("Removed Cards: " + deck);
   },
 
   startingHand: (deck, player1, player2, player3, player4) => {
@@ -47,7 +48,7 @@ module.exports = {
   },
 
   showPlayerHand(currentPlayer, images) {
-    
+
   },
     //for(i = 0; i < currentPlayer.length; i++) {
 

@@ -29,17 +29,17 @@ const init = (app, server) => {
 
     // Creates a shuffled deck for the game
     socket.on('startgame', (data) => {
+      console.log("Game Room: " + data.gameid);
       game.createDeck(deck, removedCards);
-      game.drawCard(player1, deck);
-      console.log("Deck: " + deck);
       game.startingHand(deck, player1, player2, player3, player4);
+      game.drawCard(player1, deck);
       console.log("Deck: " + deck);
       console.log("Player1: " + player1);
       console.log("Player2: " + player2);
       console.log("Player3: " + player3);
       console.log("Player4: " + player4);
-      io.emit('showHand', player1);
     });
+
 
     socket.on('playcard', (data) => {
       console.log("Player plays a card");
