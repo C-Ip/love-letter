@@ -8,6 +8,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var LocalStrategy = require('passport-local').Strategy;
+if (typeof localStorage ==="undefined" || localStorage == null){
+  var LocalStorage = require('node-localstorage').LocalStorage;
+  localStorage = new LocalStorage('./scratch');
+}
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -61,6 +65,8 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
   // Global variable
   res.locals.user = req.user || null;
+  localStorage.setItem('uUID',Math.random().toString(24)+ new Date());
+  console.log(localStorage.getItem('uUID'))
 
   // render the error page
   res.status(err.status || 500);
