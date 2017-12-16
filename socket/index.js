@@ -24,32 +24,30 @@ const init = (app, server) => {
   const io = socketIO().listen(server);
   var nsp = io.of('/game');
   io.sockets.on('connection', (socket) => {
-<<<<<<< HEAD
-=======
     var currentUID = null;
     connections.push(socket);
->>>>>>> 32ec3cfba79d90d81ecb35f6ee0c2bb6e3ab8597
     console.log('Connected: %s sockets connected', connections.length);
     // Messages display in chatbox
     io.emit('userLogin',localStorage.getItem('uUID'))
     console.log("userLogin emitted");
+    
     socket.on('chat message', (msg) => {
       io.emit('chat message',  msg);
     });
 
-<<<<<<< HEAD
+
     socket.on('game-lobby-message', (data) => {
       socket.join(data.roomid);
       io.sockets.in(data.roomid).emit('game-lobby-message', data);
-=======
+    });
+
     socket.on('userLogin',(data)=>{
       if(data !==null){
         if(currentUIDS.includes(data)){
-            userIsConnected = true;
-      currentUID = data
+          userIsConnected = true;
+          currentUID = data;
         }
       }
->>>>>>> 32ec3cfba79d90d81ecb35f6ee0c2bb6e3ab8597
     });
 
     // Creates a shuffled deck for the game
@@ -80,10 +78,8 @@ const init = (app, server) => {
       socket.join(data.gameid);
       console.log('Room: %s created.', data.gameid);
       console.log(socket);
-    })
+    });
 
-<<<<<<< HEAD
-=======
     socket.on('disconnect', function(data) {
       userIsConnected = false;
       setTimeout(function(){
@@ -92,7 +88,6 @@ const init = (app, server) => {
       connections.splice(connections.indexOf(socket), 1);
       console.log('Disconnected: %s sockets connected', connections.length);
     });
->>>>>>> 32ec3cfba79d90d81ecb35f6ee0c2bb6e3ab8597
 
   });
 };
