@@ -19,6 +19,10 @@ $(function () {
     socket.emit('startgame');
   });
 
+  $('#joingame').submit( function(){
+    socket.emit('joingame',game_id);
+  });
+
   $('#creategames').click(function() {
     socket.emit('createdgame');
   });

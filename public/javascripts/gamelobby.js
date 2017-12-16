@@ -9,6 +9,7 @@ $(function () {
     return false;
   });
 
+
   $('#startgame').submit( function() {
     socket.emit('startgame');
   });

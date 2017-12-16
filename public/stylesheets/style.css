@@ -46,6 +46,12 @@ a:hover {
   left: 25%;
 }
 
+#joingame{
+  position: fixed;
+  top: 60%;
+  left: 15%;
+}
+
 #startgame {
   position: fixed;
   top: 60%;
