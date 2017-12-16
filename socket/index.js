@@ -35,14 +35,18 @@ const init = (app, server) => {
       io.emit('chat message',  msg);
     });
 
-    socket.on('game-lobby-message', (data) => {
-      socket.join(data.roomid);
-      io.sockets.in(data.roomid).emit('game-lobby', data);
+    socket.on('game-lobby-message', (msg) => {
+      db.getNewestRoom().then( (data) => {
+        socket.join(data.gameid);
+        io.sockets.in(data.gameid).emit('game-lobby', msg);
+      });
     });
 
-    socket.on('game-room-message', (data) => {
-      socket.join('4');
-      io.sockets.in('4').emit('game-room', data);
+    socket.on('game-room-message', (msg) => {
+      db.getNewestRoom().then( (data) => {
+        socket.join(data.gameid);
+        io.sockets.in(data.gameid).emit('game-room', msg);
+      });
     });
 
     socket.on('userLogin',(data)=>{
@@ -55,33 +59,49 @@ const init = (app, server) => {
     });
 
     // Creates a shuffled deck for the game
-    socket.on('startgame', (data) => {
-      console.log("Game Room: " + data.gameid);
-      game.createDeck(deck, removedCards);
-      game.startingHand(deck, player1, player2, player3, player4);
-      game.drawCard(player1, deck);
-      console.log("Deck: " + deck);
-      console.log("Player1: " + player1);
-      console.log("Player2: " + player2);
-      console.log("Player3: " + player3);
-      console.log("Player4: " + player4);
+    socket.on('startgame', () => {
+      db.getNewestRoom().then( (data) => {
+        game.createDeck(deck, removedCards);
+        game.startingHand(deck, player1, player2, player3, player4);
+        game.drawCard(player1, deck);
+        console.log("Deck: " + deck);
+        console.log("Player1: " + player1);
+        console.log("Player2: " + player2);
+        console.log("Player3: " + player3);
+        console.log("Player4: " + player4);
+        socket.join(data.gameid);
+        console.log("Game Room: " + data.gameid);
+        io.sockets.in(data.gameid).emit('show', player1);
+      }).catch((error) => {
+        console.log("Error: " + error);
+      });
     });
 
 
-    socket.on('playcard', (data) => {
-      console.log("Player plays a card");
-      console.log(data.card);
-      // Testing with just one player
-      if(turnCounter == 1) {
-        game.playCard(player1, data.card);
-        console.log(player1);
-      }
+    socket.on('cardChosen', (data) => {
+      db.getNewestRoom().then( (data) => {
+        if(turnCounter == 1) {
+          if(data.card == 0) {
+            io.sockets.in(data.gameid).emit('firstCardPlayed', {card: player1[0]});
+          } else {
+            io.sockets.in(data.gameid).emit('firstCardPlayed', {card: player1[2]});
+          }
+          game.playCard(player1, data.card);
+          console.log(player1);
+        }
+      }).catch((error) => {
+        console.log("Error: " + error);
+      });
     });
 
-    socket.on('createdgame', (data) => {
-      socket.join(data.gameid);
-      console.log('Room: %s created.', data.gameid);
-      console.log(socket);
+    socket.on('createdgame', () => {
+      db.getNewestRoom().then( (data) => {
+        var newRoom = data.gameid + 1;
+        socket.join(newRoom);
+        console.log('Room: %s created.', newRoom);
+      }).catch((error) => {
+        console.log("Error: " + error);
+      });
     });
 
     socket.on('disconnect', function(data) {

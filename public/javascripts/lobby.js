@@ -16,16 +16,11 @@ $(function () {
   });
 
   $('#startgame').submit( function() {
-    socket.emit('startgame', {gameid: game_id});
+    socket.emit('startgame');
   });
 
   $('#creategames').click(function() {
-    game_id += 1;
-    socket.emit('createdgame', {gameid: game_id});
-  });
-
-  $('#playcard').click( function() {
-    socket.emit('card_played');
+    socket.emit('createdgame');
   });
 
   socket.on('chat message', function(msg) {

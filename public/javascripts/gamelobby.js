@@ -10,7 +10,7 @@ $(function () {
   });
 
   $('#startgame').submit( function() {
-    socket.emit('startgame', {gameid: game_id});
+    socket.emit('startgame');
   });
 
   socket.on('game-lobby', function(msg) {

@@ -39,6 +39,6 @@ module.exports = {
   },
 
   getNewestRoom: function() {
-    return db.one('SELECT * FROM game WHERE gameid=(SELECT max(gameid) FROM game')
+    return db.one('SELECT * FROM game WHERE gameid=(SELECT max(gameid) FROM game)')
   }
 };
