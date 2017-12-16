@@ -94,6 +94,17 @@ const init = (app, server) => {
       });
     });
 
+
+    socket.on('joingame',() =>{
+      db.joinRoom().then( (data)=>{ //joinRoom: function(request, gameRoomId) {
+        var joinedRoom = gameRoomId;
+        socket.join(joinedRoom);
+        console.log('Room: %s joined.',joinedRoom);
+      }).catch((error)=>{
+        console.log("Error: " +error)
+      });
+    });
+
     socket.on('createdgame', () => {
       db.getNewestRoom().then( (data) => {
         var newRoom = data.gameid + 1;
