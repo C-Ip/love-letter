@@ -19,14 +19,18 @@ var isProtected = [false,false,false,false]// not sure about this
 var imageList = ['images/guard.jpg', '/images/2.jpeg', '/images/3.jpg', '/images/4.jpg', '/images/5.jpg', '/images/6.jpeg', '/images/7.jpg', '/images/8.jpeg'];
 
 const init = (app, server) => {
-  const io = socketIO(server);
+  const io = socketIO().listen(server);
   var nsp = io.of('/game');
   io.sockets.on('connection', (socket) => {
-    connections.push(socket);
     console.log('Connected: %s sockets connected', connections.length);
     // Messages display in chatbox
     socket.on('chat message', (msg) => {
       io.emit('chat message',  msg);
+    });
+
+    socket.on('game-lobby-message', (data) => {
+      socket.join(data.roomid);
+      io.sockets.in(data.roomid).emit('game-lobby-message', data);
     });
 
     // Creates a shuffled deck for the game
@@ -54,15 +58,11 @@ const init = (app, server) => {
     });
 
     socket.on('createdgame', (data) => {
-      socket.join('Room ' + data.gameid);
+      socket.join(data.gameid);
       console.log('Room: %s created.', data.gameid);
-      socket.to('Room ' + data.gameid).emit('addplayer', data);
+      console.log(socket);
     })
 
-    socket.on('disconnect', function(data) {
-      connections.splice(connections.indexOf(socket), 1);
-      console.log('Disconnected: %s sockets connected', connections.length);
-    });
 
   });
 };

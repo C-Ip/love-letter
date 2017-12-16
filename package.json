@@ -7,7 +7,7 @@
     "start:dev": "DEBUG=APP_NAME:* nodemon ./bin/www",
     "db:create:migration": "sequelize migration:generate --name ",
     "db:migrate": "sequelize db:migrate",
-    "db:rollback": "sequelize dbmigrate:undo",
+    "db:rollback": "sequelize db:migrate:undo",
     "postinstall": "sequelize db:migrate"
   },
   "dependencies": {
