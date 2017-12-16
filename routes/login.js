@@ -21,7 +21,10 @@ passport.use(new LocalStrategy( (username, password, done) => {
         console.log('Incorrect Password');
         return done(null, false);
     }});
-  });
+  }).catch( error => {
+    console.log(error);
+    done(null, false);
+  })
 }));
 
 passport.serializeUser(function(user, done) {
