@@ -35,10 +35,12 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-router.post('/', passport.authenticate('local', {successRedirect: '/', failureRedirect: '/login'}), (request, response) => {
-    console.log(request.session.player_id);
-    response.redirect('/');
-  }
+router.post('/',
+  passport.authenticate('local', {successRedirect: '/', failureRedirect: '/login'}),
+    function(request, response) {
+      console.log("Logged in");
+      response.redirect('/');
+    }
 );
 
 module.exports = router;

@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (request, response, next) => {
-  if(request.session.player_id == null) {
+  if(request.user.playerid == null) {
     response.redirect('/login');
   } else {
     db.createRoom()

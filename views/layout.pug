@@ -10,9 +10,12 @@ html
        .navbar-header
        a.navbar-brand(href='/') Home
        a.navbar-brand(href='/rules') Rules
-       a#register.navbar-brand.pull-right(href='/registration') Register
-       a#login.navbar-brand.pull-right(href='/login') Login
-       a#account.navbar-brand.pull-right(href='/users') My Account
+       if !user
+        a#login.navbar-brand.pull-right(href='/login') Login
+        a#register.navbar-brand.pull-right(href='/registration') Register
+       else
+        a#logout.navbar-brand.pull-right(href='logout') Logout
+        a#account.navbar-brand.pull-right(href='/users') My Account
 block content
 
 script(src='https://code.jquery.com/jquery-3.1.1.min.js', integrity='sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=', crossorigin='anonymous')
