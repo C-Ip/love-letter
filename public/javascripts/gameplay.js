@@ -28,7 +28,6 @@ function playFunction() {
   if(document.getElementById('playerCard1_2').style.borderStyle == 'none'){
     cardChosen = 0;
   }
-  socket.emit('playcard', {card: cardChosen});
   //document.getElementById('playerCard1_1').setAttribute('src', '/images/guard.jpg');
   document.getElementById('playcard').style.visibility = 'hidden';
   document.getElementById('endturn').style.visibility = 'visible';

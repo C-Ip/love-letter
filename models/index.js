@@ -3,7 +3,6 @@
 const passport = require('passport');
 const db = require('../db');
 var bcrypt = require('bcryptjs');
-var salt = bcrypt.genSaltSync(10);
 
 module.exports = {
   createUser: function(request, response) {
@@ -37,5 +36,9 @@ module.exports = {
 
   getRoom: function() {
     return db.one('SELECT * FROM game')
+  },
+
+  getNewestRoom: function() {
+    return db.one('SELECT * FROM game WHERE gameid=(SELECT max(gameid) FROM game')
   }
 };

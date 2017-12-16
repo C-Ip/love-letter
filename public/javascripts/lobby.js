@@ -2,7 +2,7 @@ const ROOM_ID = 'room-id';
 const USER_ID = 'user-id';
 const USER_NAME = 'username';
 const ROOM_CREATED = 'room-created';
-var game_id = 000000;
+var game_id = 0;
 
 var socket = io();
 
@@ -15,12 +15,17 @@ $(function () {
     return false;
   });
 
-  $('#playcard').on('clicked', () => {
-    socket.emit('card_played');
-  });
-
   $('#startgame').submit( function() {
     socket.emit('startgame', {gameid: game_id});
+  });
+
+  $('#creategames').click(function() {
+    game_id += 1;
+    socket.emit('createdgame', {gameid: game_id});
+  });
+
+  $('#playcard').click( function() {
+    socket.emit('card_played');
   });
 
   socket.on('chat message', function(msg) {

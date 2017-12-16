@@ -4,6 +4,7 @@ const JOIN_ROOM = 'join-room';
 const socketIO = require('socket.io');
 var db = require('../models/index');
 var game = require('../models/game');
+var connections = [];
 var deck = [];
 var removedCards = [];
 var discard = [];
@@ -19,9 +20,10 @@ var imageList = ['images/guard.jpg', '/images/2.jpeg', '/images/3.jpg', '/images
 
 const init = (app, server) => {
   const io = socketIO(server);
-  const io2 = socketIO();
   var nsp = io.of('/game');
   io.sockets.on('connection', (socket) => {
+    connections.push(socket);
+    console.log('Connected: %s sockets connected', connections.length);
     // Messages display in chatbox
     socket.on('chat message', (msg) => {
       io.emit('chat message',  msg);
@@ -49,62 +51,19 @@ const init = (app, server) => {
         game.playCard(player1, data.card);
         console.log(player1);
       }
-
-      /*
-      switch(turnCounter) {
-        case 1:
-          game.playCard(player1, data.card);
-          console.log(player1);
-          break;
-        case 2:
-          game.playCard(player2, data.card);
-          console.log(player2);
-          break;
-        case 3:
-          game.playCard(player3, data.card);
-          console.log(player3);
-          break;
-        case 4:
-          game.playCard(player4, data.card);
-          console.log(player4);
-          break;
-      }
-      */
     });
 
-    socket.on('startTurn', () => {
-      if(turnCounter == 4) {
-        turnCounter = 1;
-      } else {
-        turnCounter += 1;
-      }
-      console.log('Player ' + turnCounter + ' turn');
-      switch(turnCounter) {
-        case 1:
-          game.drawCard(player1, deck);
-          break;
-        case 2:
-          game.drawCard(player2, deck);
-          break;
-        case 3:
-          game.drawCard(player3, deck);
-          break;
-        case 4:
-          game.drawCard(player4, deck);
-          break;
-      }
-    });
-  });
+    socket.on('createdgame', (data) => {
+      socket.join('Room ' + data.gameid);
+      console.log('Room: %s created.', data.gameid);
+      socket.to('Room ' + data.gameid).emit('addplayer', data);
+    })
 
-  nsp.on('connection', (socket) => {
-    socket.on('chat message', (msg) => {
-      io.to('/game').emit('chat message', msg);
+    socket.on('disconnect', function(data) {
+      connections.splice(connections.indexOf(socket), 1);
+      console.log('Disconnected: %s sockets connected', connections.length);
     });
 
-    // May not be needed
-    socket.on('endTurn', () => {
-      turnCounter++;
-    });
   });
 };
 

@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', ensureAuthenticated, function(req, res, next) {
-  res.render('index', { title: 'Love Letter', user: req.user.playerid });
+  res.render('index', { title: 'Love Letter', user: req.user });
 });
 
 function ensureAuthenticated(request, response, next) {

@@ -15,7 +15,7 @@ html
         a#register.navbar-brand.pull-right(href='/registration') Register
        else
         a#logout.navbar-brand.pull-right(href='logout') Logout
-        a#account.navbar-brand.pull-right(href='/users') My Account
+        a#account.navbar-brand.pull-right(href='/users') #{user.username}
 block content
 
 script(src='https://code.jquery.com/jquery-3.1.1.min.js', integrity='sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=', crossorigin='anonymous')
@@ -23,4 +23,3 @@ script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.5.3/jquery.t
 script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
 script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
 script(src='/socket.io/socket.io.js')
-script(src='/javascripts/homepage.js')

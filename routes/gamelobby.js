@@ -8,18 +8,13 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (request, response, next) => {
-  if(request.user.playerid == null) {
-    response.redirect('/login');
-  } else {
-    db.createRoom()
+  db.createRoom()
+  .then( data => {
+    db.joinRoom(request, data.gameid)
     .then( data => {
-      console.log(data.gameid);
-      db.joinRoom(request, data.gameid)
-      .then( data => {
-        response.redirect('/gamelobby');
-      })
+      response.redirect('/gamelobby');
     })
-  }
+  })
 });
 
 module.exports = router;
