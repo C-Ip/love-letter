@@ -30,15 +30,19 @@ const init = (app, server) => {
     // Messages display in chatbox
     io.emit('userLogin',localStorage.getItem('uUID'))
     console.log("userLogin emitted");
-    
+
     socket.on('chat message', (msg) => {
       io.emit('chat message',  msg);
     });
 
-
     socket.on('game-lobby-message', (data) => {
       socket.join(data.roomid);
-      io.sockets.in(data.roomid).emit('game-lobby-message', data);
+      io.sockets.in(data.roomid).emit('game-lobby', data);
+    });
+
+    socket.on('game-room-message', (data) => {
+      socket.join('4');
+      io.sockets.in('4').emit('game-room', data);
     });
 
     socket.on('userLogin',(data)=>{

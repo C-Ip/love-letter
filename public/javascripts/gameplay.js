@@ -1,13 +1,5 @@
-var db = require('../models/index');
-
 var socket = io();
 
-socket.on('game message display', function(msg) {
-  var node = document.createElement("li");
-  var textnode = document.createTextNode(msg);
-  node.appendChild(textnode);
-  document.getElementById('messages').appendChild(node);
-});
 
 var imageArray = new Array();
 var imageList = ['images/guard.jpg', '/images/2.jpeg', '/images/3.jpg', '/images/4.jpg', '/images/5.jpg', '/images/6.jpeg', '/images/7.jpg', '/images/8.jpeg'];
@@ -45,7 +37,15 @@ function endTurnFunction() {
   socket.emit('startTurn');
 };
 
-function sendGameMessage() {
-  var message = document.getElementById('m').value;
-  socket.emit('game message', message);
-};
+$(function () {
+  $('#gameroomchat').submit(function() {
+    socket.emit('game-room-message', $('#gamemsg').val());
+    $('#gamemsg').val('');
+    return false;
+  });
+
+  socket.on('game-room', function(msg) {
+    $('#gameroommessages').append($('<li>').text(msg));
+  });
+
+});

@@ -13,7 +13,7 @@ $(function () {
     socket.emit('startgame', {gameid: game_id});
   });
 
-  socket.on('game-lobby-message', function(msg) {
+  socket.on('game-lobby', function(msg) {
     $('#gamelobbymessages').append($('<li>').text(msg));
   });
 
