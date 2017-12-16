@@ -7,7 +7,7 @@
     "start:dev": "DEBUG=APP_NAME:* nodemon ./bin/www",
     "db:create:migration": "sequelize migration:generate --name ",
     "db:migrate": "sequelize db:migrate",
-    "db:rollback": "sequelize dbmigrate:undo",
+    "db:rollback": "sequelize db:migrate:undo",
     "postinstall": "sequelize db:migrate"
   },
   "dependencies": {
@@ -23,7 +23,9 @@
     "flash": "^1.1.0",
     "jQuery": "^1.7.4",
     "jquery": "^3.2.1",
+    "localStorage": "^1.0.3",
     "morgan": "~1.9.0",
+    "node-localstorage": "^1.3.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "pg-promise": "^7.0.3",
@@ -31,7 +33,8 @@
     "sequelize": "^4.18.0",
     "sequelize-cli": "^3.0.0",
     "serve-favicon": "~2.4.5",
-    "socket.io": "^2.0.4"
+    "socket.io": "^2.0.4",
+    "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {
     "nodemon": "^1.12.1"

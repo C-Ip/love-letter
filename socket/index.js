@@ -4,6 +4,8 @@ const JOIN_ROOM = 'join-room';
 const socketIO = require('socket.io');
 var db = require('../models/index');
 var game = require('../models/game');
+var currentUIDS = [];
+var userIsConnected = true;
 var connections = [];
 var deck = [];
 var removedCards = [];
@@ -22,11 +24,23 @@ const init = (app, server) => {
   const io = socketIO(server);
   var nsp = io.of('/game');
   io.sockets.on('connection', (socket) => {
+    var currentUID = null;
     connections.push(socket);
     console.log('Connected: %s sockets connected', connections.length);
     // Messages display in chatbox
+    io.emit('userLogin',localStorage.getItem('uUID'))
+    console.log("userLogin emitted");
     socket.on('chat message', (msg) => {
       io.emit('chat message',  msg);
+    });
+
+    socket.on('userLogin',(data)=>{
+      if(data !==null){
+        if(currentUIDS.includes(data)){
+            userIsConnected = true;
+      currentUID = data
+        }
+      }
     });
 
     // Creates a shuffled deck for the game
@@ -60,6 +74,10 @@ const init = (app, server) => {
     })
 
     socket.on('disconnect', function(data) {
+      userIsConnected = false;
+      setTimeout(function(){
+        if(!userIsConnected) {currentUIDS.pop(currentUID);}
+      },15000);
       connections.splice(connections.indexOf(socket), 1);
       console.log('Disconnected: %s sockets connected', connections.length);
     });
