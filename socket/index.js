@@ -71,7 +71,7 @@ const init = (app, server) => {
         console.log("Player4: " + player4);
         socket.join(data.gameid);
         console.log("Game Room: " + data.gameid);
-        io.sockets.in(data.gameid).emit('show', player1);
+        io.sockets.in(data.gameid).emit('show');
       }).catch((error) => {
         console.log("Error: " + error);
       });

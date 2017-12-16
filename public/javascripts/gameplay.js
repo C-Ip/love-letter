@@ -7,10 +7,6 @@ for(i = 0; i < 8; i++) {
   imageArray[i].src = imageList[i];
 };
 
-function changeCard(player) {
-  document.getElementById('playerCard1_1').src = imageList[0];
-};
-
 function selectCard(id) {
   if(id.style.borderStyle == 'none') {
     id.style.border = '3px #1ec5e5';
@@ -47,8 +43,8 @@ $(function () {
     return false;
   });
 
-  socket.on('show', function(player1) {
-    $('#playerCard1_1').attr('src', imageList[player1[0]]);
+  socket.on('show', function() {
+    $('#playerCard1_1').attr('src', 'guard.jpg');
   });
 
   socket.on('game-room', function(msg) {
@@ -56,7 +52,7 @@ $(function () {
   });
 
   socket.on('firstCardPlayed', function(cardValue) {
-    changeCard(cardValue);
+    $('#playerCard1_2').attr('src', imageList[0]);
   });
 
 });
