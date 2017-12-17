@@ -87,16 +87,20 @@ const init = (app, server) => {
       });
     });
 
-    socket.on('cardChosen', (data) => {
-      db.getNewestRoom().then( (data) => {
+    socket.on('playcard', (player) => {
+      db.getPlayerRoom(player.playerid).then( (gameroom) => {
         if(turnCounter == 1) {
-          if(data.card == 0) {
-            io.sockets.in(data.gameid).emit('firstCardPlayed', {card: player1[0]});
+          if(player.card == 0) {
+            console.log('Card: %s is being played', player1[player.card]);
+            socket.join(gameroom);
+            io.sockets.in(gameroom).emit('cardPlayed', {value: player1[player.card], cardPosition : player.card});
           } else {
-            io.sockets.in(data.gameid).emit('firstCardPlayed', {card: player1[2]});
+            console.log('Card: %s is being played', player1[player.card]);
+            socket.join(gameroom);
+            io.sockets.in(gameroom).emit('cardPlayed', {value: player1[player.card], cardPosition: player.card});
           }
-          game.playCard(player1, data.card);
-          console.log(player1);
+          game.playCard(player1, player.card);
+          console.log('Hand: %s', player1);
         }
       }).catch((error) => {
         console.log("Error: " + error);

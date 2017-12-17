@@ -31,7 +31,7 @@ function playFunction() {
   if(document.getElementById('playerCard1_2').style.borderStyle == 'none'){
     cardChosen = 0;
   }
-  socket.emit('playcard', {card: cardChosen});
+  socket.emit('playcard', {card: cardChosen, playerid: currPlayer});
   //document.getElementById('playerCard1_1').setAttribute('src', '/images/guard.jpg');
   document.getElementById('playcard').style.visibility = 'hidden';
   document.getElementById('endturn').style.visibility = 'visible';
@@ -49,12 +49,20 @@ $(function () {
   });
 
   socket.on('playgame', function(player) {
-    $('#playerCard1_1').attr('src', imageList[player[0]]);
-    $('#playerCard1_2').attr('src', imageList[player[1]]);
+    $('#playerCard1_1').attr('src', imageList[player[0] - 1]);
+    $('#playerCard1_2').attr('src', imageList[player[1] - 1]);
   });
 
   socket.on('game-room', function(msg) {
     $('#gameroommessages').append($('<li>').text(msg));
+  });
+
+  socket.on('cardPlayed', function(card) {
+    if(card.cardPosition == 0) {
+      $('#playerCard1_1').removeAttr('src');
+    } else {
+      $('#playerCard1_1').removeAttr('src');
+    }
   });
 
 });
