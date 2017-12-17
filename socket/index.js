@@ -94,10 +94,10 @@ const init = (app, server) => {
           if(player.card == 0) {
             console.log('Card: %s is being played', player1[player.card]);
             socket.join(gameroom);
-            io.sockets.in(gameroom).emit('cardPlayed', {value: player1[player.card], cardPosition : player.card});
+            io.sockets.in(gameroom).emit('cardPlayed', {value: player1[player.card], cardPosition : player.card, playerid: player.playerid});
           } else {
             socket.join(gameroom);
-            io.sockets.in(gameroom).emit('cardPlayed', {value: player1[player.card], cardPosition: player.card});
+            io.sockets.in(gameroom).emit('cardPlayed', {value: player1[player.card], cardPosition: player.card, playerid: player.playerid});
           }
           game.playCard(player1, player.card);
           console.log('Hand: %s', player1);

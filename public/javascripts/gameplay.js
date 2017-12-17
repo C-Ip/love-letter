@@ -118,35 +118,35 @@ $(function () {
     switch(card.value) {
       case '1':
         guard(card.value, card.cardPosition);
-        document.getElementById('player4').style.visibility = 'visible';
+        $('#gameroommessages').append($('<li>').text('Player ' + card.playerid + ' has played a Guard'));
         break;
       case '2':
         priest(card.value, card.cardPosition);
-        document.getElementById('player4').style.visibility = 'visible';
+        $('#gameroommessages').append($('<li>').text('Player ' + card.playerid + ' has played a Priest'));
         break;
       case '3':
         baron(card.value, card.cardPosition);
-        document.getElementById('player4').style.visibility = 'visible';
+        $('#gameroommessages').append($('<li>').text('Player ' + card.playerid + ' has played a Baron'));
         break;
       case '4':
         handmaid(card.value, card.cardPosition);
-        document.getElementById('player4').style.visibility = 'visible';
+        $('#gameroommessages').append($('<li>').text('Player ' + card.playerid + ' has played a Handmaid'));
         break;
       case '5':
         prince(card.value, card.cardPosition);
-        document.getElementById('player4').style.visibility = 'visible';
+        $('#gameroommessages').append($('<li>').text('Player ' + card.playerid + ' has played a Prince'));
         break;
       case '6':
         king(card.value, card.cardPosition);
-        document.getElementById('player4').style.visibility = 'visible';
+        $('#gameroommessages').append($('<li>').text('Player ' + card.playerid + ' has played a King'));
         break;
       case '7':
         countess(card.value, card.cardPosition);
-        document.getElementById('player4').style.visibility = 'visible';
+        $('#gameroommessages').append($('<li>').text('Player ' + card.playerid + ' has played a Countess'));
         break;
       case '8':
         princess(card.value, card.cardPosition);
-        document.getElementById('player4').style.visibility = 'visible';
+        $('#gameroommessages').append($('<li>').text('Player %s' + card.playerid + ' has played a Princess'));
         break;
       default:
         break;
