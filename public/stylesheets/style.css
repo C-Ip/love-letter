@@ -60,3 +60,18 @@ a:hover {
 #special {
  font-style: italic;
 }
+
+#gamelist{
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+}
+
+#gamelist li{
+  padding: 5px 10px;
+}
+
+#gamelist li:nth-child(odd){
+  background: #eee;
+
+}
