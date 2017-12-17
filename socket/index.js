@@ -96,7 +96,6 @@ const init = (app, server) => {
             socket.join(gameroom);
             io.sockets.in(gameroom).emit('cardPlayed', {value: player1[player.card], cardPosition : player.card});
           } else {
-            console.log('Card: %s is being played', player1[player.card]);
             socket.join(gameroom);
             io.sockets.in(gameroom).emit('cardPlayed', {value: player1[player.card], cardPosition: player.card});
           }

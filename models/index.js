@@ -48,5 +48,9 @@ module.exports = {
 
   getPlayerRoom: function(playerid) {
     return db.one('SELECT gameid FROM playergame WHERE playerid = $1', [playerid])
+  },
+
+  getPlayerGameId: function(playerid) {
+    return db.one('SELECT playergameid FROM playergame WHERE playerid = $1', [playerid])
   }
 };

@@ -11,15 +11,6 @@ body {
   right: 1%;
 }
 
-#gamelobbychat {
-  background: #000;
-  padding: 2px;
-  position: fixed;
-  bottom: 3px;
-  width: 30.3%;
-  right: 1%;
-}
-
 #gameroomchat {
   background: #000;
   padding: 2px;
@@ -30,13 +21,6 @@ body {
 }
 
 #chat input {
-  border: 0;
-  padding: 10px;
-  width: 85%;
-  margin-right: .5%;
-}
-
-#gamelobbychat input {
   border: 0;
   padding: 10px;
   width: 85%;
@@ -57,13 +41,6 @@ body {
   padding: 10px;
 }
 
-#gamelobbychat button {
-  width: 14%;
-  background: rgb(130, 224, 255);
-  border: none;
-  padding: 10px;
-}
-
 #gameroomchat button {
   width: 14%;
   background: rgb(130, 224, 255);
@@ -77,15 +54,11 @@ body {
   right: 1%;
   width: 30.3%;
   height: 500px;
-  border: 3px solid #73AD21;
+  border: 1px solid #4578ea;
+  overflow-y: auto;
 }
 
 #messages {
-  list-style-type: none;
-  padding: 0;
-}
-
-#gamelobbymessages {
   list-style-type: none;
   padding: 0;
 }
@@ -99,19 +72,11 @@ body {
   padding: 5px 10px;
 }
 
-#gamelobbymessages li {
-  padding: 5px 10px;
-}
-
 #gameroommessages li {
   padding: 5px 10px;
 }
 
 #messages li:nth-child(odd) {
-  background: #eee;
-}
-
-#gamelobbymessages li:nth-child(odd) {
   background: #eee;
 }
 

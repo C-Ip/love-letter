@@ -52,12 +52,6 @@ a:hover {
   left: 15%;
 }
 
-#startgame {
-  position: fixed;
-  top: 60%;
-  left: 25%;
-}
-
 #rules {
   text-align: center;
   font-size: 18px;

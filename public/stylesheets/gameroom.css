@@ -53,6 +53,12 @@
   bottom: 10%;
 }
 
+#player2 {
+  position: fixed;
+  left: 58%;
+  bottom: 5%;
+}
+
 #playerCard2_1 {
   position: fixed;
   left: 50%;
@@ -65,6 +71,12 @@
   left: 50%;
   top: 55%;
 
+}
+
+#player3 {
+  position: fixed;
+  left: 52%;
+  bottom: 10%;
 }
 
 #playerCard3_1 {
@@ -83,6 +95,12 @@
   left: 34%;
   top: 12%;
 
+}
+
+#player4 {
+  position: fixed;
+  left: 46%;
+  bottom: 5%;
 }
 
 #playerCard4_1 {

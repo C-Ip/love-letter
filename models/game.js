@@ -60,10 +60,37 @@ module.exports = {
   },
 
   playCard: (currentPlayer, card) => {
+    console.log('You played card: %s', currentPlayer[card]);
+    switch(currentPlayer[card]) {
+      case 1:
+        // action for guard
+        break;
+      case 2:
+        // action
+        break;
+      case 3:
+        // action
+        break;
+      case 4:
+        // action
+        break;
+      case 5:
+        // action
+        break;
+      case 6:
+        // action
+        break;
+      case 7:
+        // action
+        break;
+      case 8:
+        // action
+        break;
+    }
     if(card == 0) {
-      return currentPlayer.shift();
+      currentPlayer.shift();
     } else {
-      return currentPlayer.pop();
+      currentPlayer.pop();
     }
   },
 
@@ -145,5 +172,5 @@ module.exports = {
       {return true;}
     else{return false;}
   }
-  
+
 };

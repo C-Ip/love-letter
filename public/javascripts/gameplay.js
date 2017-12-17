@@ -1,5 +1,5 @@
 var socket = io();
-currPlayer = local_data.playerid;
+var currPlayer = local_data.playerid;
 var cardChosen = 0;
 
 var imageArray = new Array();
@@ -12,8 +12,43 @@ for(i = 0; i < 8; i++) {
 function startGame() {
   socket.emit('startgame', currPlayer);
   document.getElementById('begin').style.visibility = 'hidden';
+  document.getElementById('player2').style.visibility = 'hidden';
+  document.getElementById('player3').style.visibility = 'hidden';
+  document.getElementById('player4').style.visibility = 'hidden';
+};
+/*
+function guard(cardValue) {
+
 };
 
+function priest(cardValue) {
+
+};
+
+function baron(cardValue) {
+
+};
+
+function handmaid(cardValue) {
+
+};
+
+function prince(cardValue) {
+
+};
+
+function king(cardValue) {
+
+};
+
+function countess(cardValue) {
+
+};
+
+function princess(cardValue) {
+
+};
+*/
 function firstCardChosen() {
   cardChosen = 0;
   document.getElementById('playerCard1_1').style.border = '3px solid #1ec5e5';
@@ -78,6 +113,34 @@ $(function () {
     } else {
       $('#playerCard1_2').removeAttr('src');
     }
+    /*
+    switch(card.value) {
+      case 1:
+        guard(card.value);
+        break;
+      case 2:
+        priest(card.value);
+        break;
+      case 3:
+        baron(card.value);
+        break;
+      case 4:
+        handmaid(card.value);
+        break;
+      case 5:
+        prince(card.value)
+        break;
+      case 6:
+        king(card.value);
+        break;
+      case 7:
+        countess(card.value);
+        break;
+      case 8:
+        princess(card.value);
+        break;
+    }
+    */
   });
 
 });
