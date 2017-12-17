@@ -69,6 +69,7 @@ const init = (app, server) => {
     // Creates a shuffled deck for the game
     socket.on('startgame', (playerid) => {
       db.getPlayerRoom(playerid).then( (room) => {
+        var gameroom = room.gameid + 1000;
         game.createDeck(deck, removedCards);
         game.startingHand(deck, player1, player2, player3, player4);
         game.drawCard(player1, deck);
@@ -77,14 +78,14 @@ const init = (app, server) => {
         console.log("Player2: " + player2);
         console.log("Player3: " + player3);
         console.log("Player4: " + player4);
-        //socket.join(room);
-        console.log("Started game room: " + room);
-        io.sockets.in(room).emit('show');
+        console.log("Started game room: " + gameroom);
+
+        socket.join(gameroom);
+        io.sockets.in(gameroom).emit('playgame', player1);
       }).catch((error) => {
         console.log("Error: " + error);
       });
     });
-
 
     socket.on('cardChosen', (data) => {
       db.getNewestRoom().then( (data) => {

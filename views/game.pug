@@ -3,6 +3,7 @@ extends layout
 block content
   link(rel='stylesheet', href='/stylesheets/chat.css')
   link(id = 'basic', rel='stylesheet', href='/stylesheets/gameroom.css')
+
   script.
     var local_data = !{JSON.stringify(user)}
   body
@@ -12,6 +13,7 @@ block content
           input#gamemsg(autocomplete='off')
           button Send
   #gamecontainer
+    button#begin(onclick='startGame()') Start Game
     button#playcard(onclick='playFunction()') Play Card
     button#endturn(onclick='endTurnFunction()') End Turn
     img#playerCard1_1(onclick='selectCard(this)')

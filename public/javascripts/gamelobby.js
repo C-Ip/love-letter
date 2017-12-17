@@ -9,10 +9,6 @@ $(function () {
     return false;
   });
 
-  $('#startgame').submit( function() {
-    socket.emit('startgame', currPlayer);
-  });
-
   $('#leaveroom').click(function() {
     socket.emit('leavegame', currPlayer);
   });
