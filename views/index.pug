@@ -2,6 +2,7 @@ extends layout
 
 block content
   link(rel='stylesheet', href='/stylesheets/chat.css')
+  link(rel='style.css',href='stylesheets/style.css')
   script.
     var local_data = !{JSON.stringify(user)}
   body
@@ -11,6 +12,7 @@ block content
           input#m(autocomplete='off')
           button Send
   #games
+    ul#gamelist
   form#creategames(action='/gamelobby' method='POST')
     button( type='submit') Create Game
   form#joingame(action'/gamelobby'method ='POST')
