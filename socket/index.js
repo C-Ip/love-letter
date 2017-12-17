@@ -90,6 +90,7 @@ const init = (app, server) => {
     socket.on('playcard', (player) => {
       db.getPlayerRoom(player.playerid).then( (gameroom) => {
         if(turnCounter == 1) {
+          console.log('Chosen card is: %s', player.card);
           if(player.card == 0) {
             console.log('Card: %s is being played', player1[player.card]);
             socket.join(gameroom);

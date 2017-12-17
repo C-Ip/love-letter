@@ -34,7 +34,7 @@
   background: url(l5r.jpeg);
   left: 27%;
   top: 42%;
-  border: 1px solid #000000;
+
 }
 
 #playerCard1_1 {
@@ -55,18 +55,16 @@
 
 #playerCard2_1 {
   position: fixed;
-
   left: 50%;
   top: 34%;
-  border: 1px solid #000000;
+
 }
 
 #playerCard2_2 {
   position: fixed;
-
   left: 50%;
   top: 55%;
-  border: 1px solid #000000;
+
 }
 
 #playerCard3_1 {
@@ -75,7 +73,7 @@
   height: 19%;
   left: 23%;
   top: 12%;
-  border: 1px solid #000000;
+
 }
 
 #playerCard3_2 {
@@ -84,23 +82,21 @@
   height: 19%;
   left: 34%;
   top: 12%;
-  border: 1px solid #000000;
+
 }
 
 #playerCard4_1 {
   position: fixed;
-
   left: 5%;
   top: 34%;
-  border: 1px solid #000000;
+
 }
 
 #playerCard4_2 {
   position: fixed;
-
   left: 5%;
   top: 55%;
-  border: 1px solid #000000;
+
 }
 
 .rotate90 {
