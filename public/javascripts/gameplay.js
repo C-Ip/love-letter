@@ -116,29 +116,37 @@ $(function () {
       $('#playerCard1_2').removeAttr('src');
     }
     switch(card.value) {
-      case 1:
+      case '1':
         guard(card.value, card.cardPosition);
+        document.getElementById('player4').style.visibility = 'visible';
         break;
-      case 2:
+      case '2':
         priest(card.value, card.cardPosition);
+        document.getElementById('player4').style.visibility = 'visible';
         break;
-      case 3:
+      case '3':
         baron(card.value, card.cardPosition);
+        document.getElementById('player4').style.visibility = 'visible';
         break;
-      case 4:
+      case '4':
         handmaid(card.value, card.cardPosition);
+        document.getElementById('player4').style.visibility = 'visible';
         break;
-      case 5:
+      case '5':
         prince(card.value, card.cardPosition);
+        document.getElementById('player4').style.visibility = 'visible';
         break;
-      case 6:
+      case '6':
         king(card.value, card.cardPosition);
+        document.getElementById('player4').style.visibility = 'visible';
         break;
-      case 7:
+      case '7':
         countess(card.value, card.cardPosition);
+        document.getElementById('player4').style.visibility = 'visible';
         break;
-      case 8:
+      case '8':
         princess(card.value, card.cardPosition);
+        document.getElementById('player4').style.visibility = 'visible';
         break;
       default:
         break;
