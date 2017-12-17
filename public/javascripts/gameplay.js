@@ -1,4 +1,5 @@
 var socket = io();
+currPlayer = local_data.playerid;
 
 var imageArray = new Array();
 var imageList = ['images/guard.jpg', '/images/2.jpeg', '/images/3.jpg', '/images/4.jpg', '/images/5.jpg', '/images/6.jpeg', '/images/7.jpg', '/images/8.jpeg'];
@@ -38,7 +39,7 @@ function endTurnFunction() {
 
 $(function () {
   $('#gameroomchat').submit(function() {
-    socket.emit('game-room-message', $('#gamemsg').val());
+    socket.emit('game-room-message', {msg: $('#gamemsg').val(), playerid: local_data.playerid});
     $('#gamemsg').val('');
     return false;
   });

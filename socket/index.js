@@ -30,22 +30,30 @@ const init = (app, server) => {
     // Messages display in chatbox
     io.emit('userLogin',localStorage.getItem('uUID'))
     console.log("userLogin emitted");
-
     socket.on('chat message', (msg) => {
       io.emit('chat message',  msg);
     });
 
-    socket.on('game-lobby-message', (msg) => {
-      db.getNewestRoom().then( (data) => {
-        socket.join(data.gameid);
-        io.sockets.in(data.gameid).emit('game-lobby', msg);
+    socket.on('game-lobby-message', (lobby) => {
+      console.log('Player: ' + lobby.playerid);
+      db.getPlayerRoom(lobby.playerid).then( (room) => {
+        console.log('Socket joined room: ' + room.gameid);
+        socket.join(room.gameid);
+        io.sockets.in(room.gameid).emit('game-lobby', lobby.msg);
+      }).catch((error) => {
+        console.log("Error: " + error);
       });
     });
 
-    socket.on('game-room-message', (msg) => {
-      db.getNewestRoom().then( (data) => {
-        socket.join(data.gameid);
-        io.sockets.in(data.gameid).emit('game-room', msg);
+    socket.on('game-room-message', (gameroom) => {
+      console.log('Player: ' + gameroom.playerid);
+      db.getPlayerRoom(gameroom.playerid).then( (room) => {
+        var game = room.gameid + 1000;
+        console.log('Socket joined room: ' + game);
+        socket.join(game);
+        io.sockets.in(game).emit('game-room', gameroom.msg);
+      }).catch((error) => {
+        console.log("Error: " + error);
       });
     });
 
@@ -59,8 +67,8 @@ const init = (app, server) => {
     });
 
     // Creates a shuffled deck for the game
-    socket.on('startgame', () => {
-      db.getNewestRoom().then( (data) => {
+    socket.on('startgame', (playerid) => {
+      db.getPlayerRoom(playerid).then( (room) => {
         game.createDeck(deck, removedCards);
         game.startingHand(deck, player1, player2, player3, player4);
         game.drawCard(player1, deck);
@@ -69,9 +77,9 @@ const init = (app, server) => {
         console.log("Player2: " + player2);
         console.log("Player3: " + player3);
         console.log("Player4: " + player4);
-        socket.join(data.gameid);
-        console.log("Game Room: " + data.gameid);
-        io.sockets.in(data.gameid).emit('show');
+        //socket.join(room);
+        console.log("Started game room: " + room);
+        io.sockets.in(room).emit('show');
       }).catch((error) => {
         console.log("Error: " + error);
       });
@@ -105,13 +113,20 @@ const init = (app, server) => {
       });
     });
 
+    socket.on('leavegame', (playerid) => {
+      console.log('You left the room.');
+      db.leaveRoom(playerid);
+    });
+
     socket.on('createdgame', () => {
+      var gameRoom = 1;
       db.getNewestRoom().then( (data) => {
         var newRoom = data.gameid + 1;
         socket.join(newRoom);
         console.log('Room: %s created.', newRoom);
       }).catch((error) => {
-        console.log("Error: " + error);
+        socket.join(gameRoom);
+        console.log('Room: 1 is created');
       });
     });
 

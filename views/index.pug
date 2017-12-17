@@ -2,6 +2,8 @@ extends layout
 
 block content
   link(rel='stylesheet', href='/stylesheets/chat.css')
+  script.
+    var local_data = !{JSON.stringify(user)}
   body
     #chatbox
       ul#messages

@@ -31,7 +31,11 @@ module.exports = {
   },
 
   joinRoom: function(request, gameRoomId) {
-    return db.none('INSERT INTO playergame(playerid, gameid) VALUES($1, $2)', [request.session.player_id, gameRoomId])
+    return db.none('INSERT INTO playergame(playerid, gameid) VALUES($1, $2)', [request.user.playerid, gameRoomId])
+  },
+
+  leaveRoom: function(playerid) {
+    return db.none('DELETE FROM playergame WHERE playerid = $1', [playerid])
   },
 
   getRoom: function() {
@@ -40,5 +44,9 @@ module.exports = {
 
   getNewestRoom: function() {
     return db.one('SELECT * FROM game WHERE gameid=(SELECT max(gameid) FROM game)')
+  },
+
+  getPlayerRoom: function(playerid) {
+    return db.one('SELECT gameid FROM playergame WHERE playerid = $1', [playerid])
   }
 };
