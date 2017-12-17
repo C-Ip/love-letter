@@ -16,39 +16,41 @@ function startGame() {
   document.getElementById('player3').style.visibility = 'hidden';
   document.getElementById('player4').style.visibility = 'hidden';
 };
-/*
-function guard(cardValue) {
 
+function guard(cardValue, cardPosition) {
+  document.getElementById('player2').style.visibility = 'visible';
+  document.getElementById('player3').style.visibility = 'visible';
+  document.getElementById('player4').style.visibility = 'visible';
 };
 
-function priest(cardValue) {
-
+function priest(cardValue, cardPosition) {
+  document.getElementById('player2').style.visibility = 'visible';
 };
 
-function baron(cardValue) {
-
+function baron(cardValue, cardPosition) {
+  document.getElementById('player2').style.visibility = 'visible';
 };
 
-function handmaid(cardValue) {
-
+function handmaid(cardValue, cardPosition) {
+  document.getElementById('player2').style.visibility = 'visible';
 };
 
-function prince(cardValue) {
-
+function prince(cardValue, cardPosition) {
+  document.getElementById('player2').style.visibility = 'visible';
 };
 
-function king(cardValue) {
-
+function king(cardValue, cardPosition) {
+  document.getElementById('player2').style.visibility = 'visible';
 };
 
-function countess(cardValue) {
-
+function countess(cardValue, cardPosition) {
+  document.getElementById('player2').style.visibility = 'visible';
 };
 
-function princess(cardValue) {
-
+function princess(cardValue, cardPosition) {
+  document.getElementById('player2').style.visibility = 'visible';
 };
-*/
+
 function firstCardChosen() {
   cardChosen = 0;
   document.getElementById('playerCard1_1').style.border = '3px solid #1ec5e5';
@@ -113,34 +115,34 @@ $(function () {
     } else {
       $('#playerCard1_2').removeAttr('src');
     }
-    /*
     switch(card.value) {
       case 1:
-        guard(card.value);
+        guard(card.value, card.cardPosition);
         break;
       case 2:
-        priest(card.value);
+        priest(card.value, card.cardPosition);
         break;
       case 3:
-        baron(card.value);
+        baron(card.value, card.cardPosition);
         break;
       case 4:
-        handmaid(card.value);
+        handmaid(card.value, card.cardPosition);
         break;
       case 5:
-        prince(card.value)
+        prince(card.value, card.cardPosition);
         break;
       case 6:
-        king(card.value);
+        king(card.value, card.cardPosition);
         break;
       case 7:
-        countess(card.value);
+        countess(card.value, card.cardPosition);
         break;
       case 8:
-        princess(card.value);
+        princess(card.value, card.cardPosition);
+        break;
+      default:
         break;
     }
-    */
   });
 
 });

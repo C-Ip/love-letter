@@ -31,6 +31,9 @@ module.exports = {
               onUpdate: 'RESTRICT'
             }
           }
+        },
+        positionid: {
+          type: Sequelize.INTEGER
         }
       }
       );
