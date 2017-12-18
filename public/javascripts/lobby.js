@@ -46,7 +46,11 @@ $(function () {
     }
     gamerooms =+ data;
     localStorage.setItem('gameid',gamerooms);
-    $('#gamelist').append($('<li>').text("gameroom:" + gameId));
+    $('#gamelist').append($('<li>').text("gameroom:" + gameid));
+    $('#gamelist').selectable();
+    $('#gamelist').on('click','#gamelist', function(){
+      socket.emit('gameselected',gameid);
+    });
   });
 
 });

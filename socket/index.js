@@ -127,6 +127,12 @@ const init = (app, server) => {
       }
     });
     */
+
+    socket.on('gameselected',(gameid)=>{
+      console.log("gameselected");
+
+    });
+
     socket.on('joingame',(playerid) =>{
       var playerPositionId = 0;
       /* Gets previous player's positionId and assigns the next person to join the next positionId
