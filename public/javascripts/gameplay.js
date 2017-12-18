@@ -2,6 +2,8 @@ var socket = io();
 var currPlayer = local_data.playerid;
 var currentPlayerUsername = local_data.username;
 var cardChosen = 0;
+var gameroomId = 0;
+var playedCard = 0;
 
 var imageArray = new Array();
 var imageList = ['images/guard.jpg', '/images/2.jpeg', '/images/3.jpg', '/images/4.jpg', '/images/5.jpg', '/images/6.jpeg', '/images/7.jpg', '/images/8.jpeg'];
@@ -10,53 +12,36 @@ for(i = 0; i < 8; i++) {
   imageArray[i].src = imageList[i];
 };
 
+function showAllTargets() {
+  document.getElementById('player2').style.visibility = 'visible';
+  document.getElementById('player3').style.visibility = 'visible';
+  document.getElementById('player4').style.visibility = 'visible';
+};
+
+function player2Immune() {
+  document.getElementById('player2').style.visibility = 'hidden';
+  document.getElementById('player3').style.visibility = 'visible';
+  document.getElementById('player4').style.visibility = 'visible';
+};
+
+function player3Immune() {
+  document.getElementById('player2').style.visibility = 'visible';
+  document.getElementById('player3').style.visibility = 'hidden';
+  document.getElementById('player4').style.visibility = 'visible';
+};
+
+function player4Immune() {
+  document.getElementById('player2').style.visibility = 'visible';
+  document.getElementById('player3').style.visibility = 'visible';
+  document.getElementById('player4').style.visibility = 'hidden';
+};
+
 function startGame() {
   socket.emit('startgame', currPlayer);
   document.getElementById('begin').style.visibility = 'hidden';
   document.getElementById('player2').style.visibility = 'hidden';
   document.getElementById('player3').style.visibility = 'hidden';
   document.getElementById('player4').style.visibility = 'hidden';
-};
-
-function guard(cardValue, cardPosition) {
-  document.getElementById('player2').style.visibility = 'visible';
-  document.getElementById('player3').style.visibility = 'visible';
-  document.getElementById('player4').style.visibility = 'visible';
-
-};
-
-// NEED IN GAME ID OF EACH PLAYER
-function priest(cardValue, cardPosition) {
-  document.getElementById('player2').style.visibility = 'visible';
-  document.getElementById('player3').style.visibility = 'visible';
-  document.getElementById('player4').style.visibility = 'visible';
-};
-
-
-function baron(cardValue, cardPosition) {
-  document.getElementById('player2').style.visibility = 'visible';
-  document.getElementById('player3').style.visibility = 'visible';
-  document.getElementById('player4').style.visibility = 'visible';
-};
-
-function handmaid(cardValue, cardPosition) {
-  document.getElementById('player2').style.visibility = 'visible';
-};
-
-function prince(cardValue, cardPosition) {
-  document.getElementById('player2').style.visibility = 'visible';
-};
-
-function king(cardValue, cardPosition) {
-  document.getElementById('player2').style.visibility = 'visible';
-};
-
-function countess(cardValue, cardPosition) {
-  document.getElementById('player2').style.visibility = 'visible';
-};
-
-function princess(cardValue, cardPosition) {
-  document.getElementById('player2').style.visibility = 'visible';
 };
 
 function firstCardChosen() {
@@ -110,7 +95,7 @@ $(function () {
     $('#player2').hide();
     $('#player3').hide();
     $('#player4').hide();
-    //socket.emit('targetChosen', 2);
+    socket.emit('targetChosen', {currentPlayer: currPlayer, targetPlayer: 2, cardAction: playedCard, gameroom: gameroomId});
   });
 
   $('#player3').click(function() {
@@ -147,48 +132,54 @@ $(function () {
     } else {
       $('#playerCard1_2').removeAttr('src');
     }
+    playedCard = card.value;
+    gameroomId = card.gameid;
     switch(card.value) {
       case '1':
-        guard(card.value, card.cardPosition);
+        showAllTargets();
         $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a Guard'));
         $('#gameroommessages').append($('<li>').text('Choose a player and name a card other than Guard'));
         break;
       case '2':
-        priest(card.value, card.cardPosition);
+        showAllTargets();
         $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a Priest'));
         $('#gameroommessages').append($('<li>').text('Choose a player and look at their hand.'));
         break;
       case '3':
-        baron(card.value, card.cardPosition);
+        showAllTargets();
         $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a Baron'));
         $('#gameroommessages').append($('<li>').text('Choose a player and compare hands. Lowest card is knocked out of the round.'));
         break;
       case '4':
-        handmaid(card.value, card.cardPosition);
+        showAllTargets();
         $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a Handmaid'));
         $('#gameroommessages').append($('<li>').text('Player: ' + currentPlayerUsername + ' is immune to effects until their next turn.'));
         break;
       case '5':
-        prince(card.value, card.cardPosition);
+        showAllTargets();
         $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a Prince'));
         $('#gameroommessages').append($('<li>').text('Choose a player, that player will discard their hand and draw a new card.'));
         break;
       case '6':
-        king(card.value, card.cardPosition);
+        showAllTargets();
         $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a King'));
         $('#gameroommessages').append($('<li>').text('Choose a player and trade hands.'));
         break;
       case '7':
-        countess(card.value, card.cardPosition);
+        showAllTargets();
         $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a Countess'));
         break;
       case '8':
-        princess(card.value, card.cardPosition);
+        showAllTargets();
         $('#gameroommessages').append($('<li>').text('Player %s' + currentPlayerUsername + ' has played a Princess'));
         break;
       default:
         break;
     }
+  });
+
+  socket.on('priestAction', (target) => {
+    $('#gameroommessages').append($('<li>').text('Player ' + target.target + ' has card: ' + target.targetHand));
   });
 
 });

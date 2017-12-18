@@ -110,7 +110,7 @@ module.exports = {
   },
 
   //Guard Card activated comes to this function
-  requestCards: (cardValue,targetPlayer)=>{
+  requestCards: (cardValue,targetPlayer) => {
     var targetPlayerCard = targetPlayer[0].value;
     if (cardValue == targetPlayerCard) {
       targetPlayer.pop();
@@ -161,10 +161,6 @@ module.exports = {
       return true;
     }
     else {return false;}
-  },
-
-  cardPeek:(targetPlayer)=>{
-    return targetPlayer[0].value;
   },
 
   checkImmunity:(currentPlayer)=>{

@@ -30,8 +30,16 @@ module.exports = {
     return db.one('INSERT INTO game(playerturn) VALUES($1) RETURNING gameid', ['0'])
   },
 
-  joinRoom: function(request, gameRoomId) {
-    return db.none('INSERT INTO playergame(playerid, gameid) VALUES($1, $2)', [request.user.playerid, gameRoomId])
+  firstToJoinRoom: function(playerid, gameRoomId) {
+    return db.none('INSERT INTO playergame(playerid, gameid, playerpositionid) VALUES($1, $2, $3)', [playerid, gameRoomId, 1])
+  },
+
+  getInGameId: function(gameid) {
+    return db.one('SELECT max(playerpositionid) FROM playergame WHERE gameid= $1', [gameid])
+  },
+
+  joinRoom: function(playerid, gameRoomId, playerpositionid) {
+    return db.none('INSERT INTO playergame(playerid, gameid, playerpositionid) VALUES($1, $2, $3)', [playerid, gameRoomId, playerpositionid])
   },
 
   leaveRoom: function(playerid) {

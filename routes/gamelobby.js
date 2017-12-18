@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 router.post('/', (request, response, next) => {
   db.createRoom()
   .then( data => {
-    db.joinRoom(request, data.gameid)
+    db.firstToJoinRoom(request.user.playerid, data.gameid)
     .then( data => {
       response.redirect('/gamelobby');
     })

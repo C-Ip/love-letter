@@ -16,6 +16,7 @@ var player3 = [];
 var player4 = [];
 var turnCounter = 1;
 var cardToPlay = 0;
+var targetPlayerCard = 0;
 var isProtected = [false,false,false,false]// not sure about this
 
 var imageList = ['images/guard.jpg', '/images/2.jpeg', '/images/3.jpg', '/images/4.jpg', '/images/5.jpg', '/images/6.jpeg', '/images/7.jpg', '/images/8.jpeg'];
@@ -99,10 +100,10 @@ const init = (app, server) => {
           if(player.card == 0) {
             console.log('Card: %s is being played', player1[player.card]);
             socket.join(gameroom);
-            io.sockets.in(gameroom).emit('cardPlayed', {value: player1[player.card], cardPosition : player.card, playerid: player.playerid});
+            io.sockets.in(gameroom).emit('cardPlayed', {value: player1[player.card], cardPosition : player.card, playerid: player.playerid, gameid: gameroom});
           } else {
             socket.join(gameroom);
-            io.sockets.in(gameroom).emit('cardPlayed', {value: player1[player.card], cardPosition: player.card, playerid: player.playerid});
+            io.sockets.in(gameroom).emit('cardPlayed', {value: player1[player.card], cardPosition: player.card, playerid: player.playerid, gameid: gameroom});
           }
           game.playCard(player1, player.card);
           console.log('Hand: %s', player1);
@@ -126,14 +127,21 @@ const init = (app, server) => {
       }
     });
     */
-    socket.on('joingame',() =>{
-      db.joinRoom().then( (data)=>{ //joinRoom: function(request, gameRoomId) {
-        var joinedRoom = gameRoomId;
-        socket.join(joinedRoom);
-        console.log('Room: %s joined.',joinedRoom);
+    socket.on('joingame',(playerid) =>{
+      var playerPositionId = 0;
+      /* Gets previous player's positionId and assigns the next person to join the next positionId
+       Needs to be fixed
+      db.getInGameId(gameid).then( (gameid) => {
+        playerPositionId = gameid + 1;
+        db.joinRoom().then( (data)=>{ //joinRoom: function(playerid, gameRoomId, inGameId) {
+          var joinedRoom = gameRoomId;
+          socket.join(joinedRoom);
+          console.log('Room: %s joined.',joinedRoom);
+        });
       }).catch((error)=>{
         console.log("Error: " +error)
       });
+      */
     });
 
     socket.on('leavegame', (playerid) => {
@@ -159,6 +167,39 @@ const init = (app, server) => {
 
       });
     });
+
+    // Game play functions
+    socket.on('targetChosen', (player) => {
+      console.log('Action performed: ' + player.cardAction);
+      console.log('Target: ' + player.targetPlayer);
+      switch(player.cardAction) {
+        case '1':
+          console.log('Action performed: ' + player.cardAction);
+        case '2':
+          if(player.targetPlayer == 1) {
+            targetPlayerCard = player1[0];
+            console.log('Player 1 has: ' + targetPlayerCard);
+          } if(player.targetPlayer == 2) {
+            targetPlayerCard = player2[0];
+            console.log('Player 2 has: ' + targetPlayerCard);
+          } if(player.targetPlayer == 3) {
+            targetPlayerCard = player3[0];
+            console.log('Player 3 has: ' + targetPlayerCard);
+          } if(player.targetPlayer == 4) {
+            targetPlayerCard = player4[0];
+            console.log('Player 4 has: ' + targetPlayerCard);
+          }
+          socket.join(player.gameroom);
+          io.sockets.in(player.gameroom).emit('priestAction', {target: player.targetPlayer, targetHand: targetPlayerCard});
+          break;
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+        case '7':
+        case '8':
+      }
+    })
 
     socket.on('disconnect', function(data) {
       userIsConnected = false;

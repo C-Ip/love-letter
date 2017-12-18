@@ -26,7 +26,7 @@ $(function () {
   });
 
   $('#joingame').submit( function(){
-    socket.emit('joingame',game_id);
+    socket.emit('joingame', currPlayer);
   });
 
   $('#creategames').click(function() {
@@ -38,6 +38,8 @@ $(function () {
 
   });
   socket.on('addGameList', function(data) {
+    // Should create buttons next to rooms that does socket.emit('joingame',currPlayer, gameid)
+    // Game room is still there even though I ran a rollback..
     var gamerooms = localStorage.getItem('gameid')|| '';
     if (gamerooms){
       gamerooms += ';';

@@ -32,7 +32,7 @@ module.exports = {
             }
           }
         },
-        positionid: {
+        playerpositionid: {
           type: Sequelize.INTEGER
         }
       }
