@@ -1,5 +1,6 @@
 var socket = io();
 var currPlayer = local_data.playerid;
+var currentPlayerUsername = local_data.username;
 var cardChosen = 0;
 
 var imageArray = new Array();
@@ -21,6 +22,7 @@ function guard(cardValue, cardPosition) {
   document.getElementById('player2').style.visibility = 'visible';
   document.getElementById('player3').style.visibility = 'visible';
   document.getElementById('player4').style.visibility = 'visible';
+
 };
 
 function priest(cardValue, cardPosition) {
@@ -118,35 +120,35 @@ $(function () {
     switch(card.value) {
       case '1':
         guard(card.value, card.cardPosition);
-        $('#gameroommessages').append($('<li>').text('Player ' + card.playerid + ' has played a Guard'));
+        $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a Guard'));
         break;
       case '2':
         priest(card.value, card.cardPosition);
-        $('#gameroommessages').append($('<li>').text('Player ' + card.playerid + ' has played a Priest'));
+        $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a Priest'));
         break;
       case '3':
         baron(card.value, card.cardPosition);
-        $('#gameroommessages').append($('<li>').text('Player ' + card.playerid + ' has played a Baron'));
+        $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a Baron'));
         break;
       case '4':
         handmaid(card.value, card.cardPosition);
-        $('#gameroommessages').append($('<li>').text('Player ' + card.playerid + ' has played a Handmaid'));
+        $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a Handmaid'));
         break;
       case '5':
         prince(card.value, card.cardPosition);
-        $('#gameroommessages').append($('<li>').text('Player ' + card.playerid + ' has played a Prince'));
+        $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a Prince'));
         break;
       case '6':
         king(card.value, card.cardPosition);
-        $('#gameroommessages').append($('<li>').text('Player ' + card.playerid + ' has played a King'));
+        $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a King'));
         break;
       case '7':
         countess(card.value, card.cardPosition);
-        $('#gameroommessages').append($('<li>').text('Player ' + card.playerid + ' has played a Countess'));
+        $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a Countess'));
         break;
       case '8':
         princess(card.value, card.cardPosition);
-        $('#gameroommessages').append($('<li>').text('Player %s' + card.playerid + ' has played a Princess'));
+        $('#gameroommessages').append($('<li>').text('Player %s' + currentPlayerUsername + ' has played a Princess'));
         break;
       default:
         break;

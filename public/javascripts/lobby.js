@@ -5,6 +5,8 @@ const ROOM_CREATED = 'room-created';
 var game_id = 0;
 // local_data is found in index.pug
 var currPlayer = local_data.playerid;
+// Player's username
+var currentPlayerUsername = local_data.username;
 //var game_id = local_data.gameid;
 var socket = io();
 
@@ -18,7 +20,7 @@ $(function () {
       });
     }
   $('#chat').submit(function() {
-    socket.emit('chat message', {msg:$('#m').val(),player:currPlayer});
+    socket.emit('chat message', {msg:$('#m').val(), username:currentPlayerUsername});
     $('#m').val('');
     return false;
   });
@@ -32,7 +34,7 @@ $(function () {
   });
 
   socket.on('chat message', function(data) {
-    $('#messages').append($('<li>').text(data.player + ":" + data.msg));
+    $('#messages').append($('<li>').text(data.username + ": " + data.msg));
 
   });
   socket.on('addGameList', function(gameId) {

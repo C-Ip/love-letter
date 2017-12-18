@@ -36,7 +36,7 @@ const init = (app, server) => {
         });
       }
     socket.on('chat message', (msg) => {
-      io.emit('chat message',  {msg:msg.msg ,player:msg.player});
+      io.emit('chat message',  {msg:msg.msg, username:msg.username});
     });
 
     socket.on('game-lobby-message', (lobby) => {
@@ -112,6 +112,9 @@ const init = (app, server) => {
       });
     });
 
+    //socket.on('playedGuard', () => {
+      
+    //});
 
     socket.on('joingame',() =>{
       db.joinRoom().then( (data)=>{ //joinRoom: function(request, gameRoomId) {
