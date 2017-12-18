@@ -12,19 +12,10 @@ var imageList = ['/images/guard.jpg', '/images/2.jpeg', '/images/3.jpg', '/image
 
 $(function () {
   $('#chat').submit(function() {
-    socket.emit('chat message',{msg: $('#m').val(), player: currPlayer});
+    socket.emit('chat message', $('#m').val());
     $('#m').val('');
     return false;
   });
-
-  $(document).ready(function(){
-    var gamerooms = localStorage.getItem('gameid');
-      if(gamerooms){
-        gamerooms.split(';').forEach(function(gameid){
-          $('#gamelist')append($('<li').text("gameroom:" + gameid));
-        });
-      }
-    });
 
   $('#joingame').submit( function(){
     socket.emit('joingame',game_id);
@@ -35,8 +26,8 @@ $(function () {
   });
 
   socket.on('chat message', function(data) {
-    $('#messages').append($('<li>').text(data.currPlayer +": " +data.msg));
-    
+    $('#messages').append($('<li>').text(data));
+
   });
   socket.on('addGameList', function(gameId) {
     var gamerooms = localStorage.getItem('gameid')|| '';
