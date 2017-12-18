@@ -36,7 +36,7 @@ const init = (app, server) => {
         });
       }
     socket.on('chat message', (msg) => {
-      io.emit('chat message',  msg);
+      io.emit('chat message',  {msg:msg.msg ,player:msg.player});
     });
 
     socket.on('game-lobby-message', (lobby) => {

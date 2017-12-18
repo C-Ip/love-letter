@@ -18,7 +18,7 @@ $(function () {
       });
     }
   $('#chat').submit(function() {
-    socket.emit('chat message', $('#m').val());
+    socket.emit('chat message', {msg:$('#m').val(),player:currPlayer});
     $('#m').val('');
     return false;
   });
@@ -32,7 +32,7 @@ $(function () {
   });
 
   socket.on('chat message', function(data) {
-    $('#messages').append($('<li>').text(data));
+    $('#messages').append($('<li>').text(data.player + ":" + data.msg));
 
   });
   socket.on('addGameList', function(gameId) {
