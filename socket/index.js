@@ -126,6 +126,11 @@ const init = (app, server) => {
       }
     });
     */
+    socket.on('gameselected',(gameid)=>{
+      console.log("gameselected");
+
+    });
+
     socket.on('joingame',() =>{
       db.joinRoom().then( (data)=>{ //joinRoom: function(request, gameRoomId) {
         var joinedRoom = gameRoomId;

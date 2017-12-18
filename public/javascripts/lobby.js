@@ -35,7 +35,7 @@ $(function () {
 
   socket.on('chat message', function(data) {
     $('#messages').append($('<li>').text(data.username + ": " + data.msg));
-
+  
   });
   socket.on('addGameList', function(data) {
     var gamerooms = localStorage.getItem('gameid')|| '';
@@ -44,7 +44,12 @@ $(function () {
     }
     gamerooms =+ data;
     localStorage.setItem('gameid',gamerooms);
-    $('#gamelist').append($('<li>').text("gameroom:" + gameId));
+    $('#gamelist').append($('<li>').text("gameroom:" + gameid));
+    $('#gamelist').selectable();
+    $('#gamelist').on('click','#gamelist', function(){
+      socket.emit('gameselected',gameid); 
+    });       
   });
-
+  
 });
+
