@@ -1,6 +1,7 @@
 var game_id = 0;
 var socket = io();
 var currPlayer = local_data.playerid;
+var currentPlayerUsername = local_data.username;
 
 $(function () {
   $('#gamelobbychat').submit(function() {
@@ -14,7 +15,7 @@ $(function () {
   });
 
   socket.on('game-lobby', function(msg) {
-    $('#gamelobbymessages').append($('<li>').text(msg));
+    $('#gamelobbymessages').append($('<li>').text(currentPlayerUsername + ': ' + msg));
   });
 
 });
