@@ -28,6 +28,13 @@ const init = (app, server) => {
     connections.push(socket);
     console.log('Connected: %s sockets connected', connections.length);
     // Messages display in chatbox
+
+    var gamerooms = localStorage.getItem('gameid');
+      if(gamerooms){
+        gamerooms.split(';').forEach(function(gameid){
+
+        });
+      }
     socket.on('chat message', (msg) => {
       io.emit('chat message',  msg);
     });

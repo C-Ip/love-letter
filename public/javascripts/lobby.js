@@ -11,6 +11,12 @@ var socket = io();
 var imageList = ['/images/guard.jpg', '/images/2.jpeg', '/images/3.jpg', '/images/4.jpg', '/images/5.jpg', '/images/6.jpeg', '/images/7.jpg', '/images/8.jpeg'];
 
 $(function () {
+  var gamerooms = localStorage.getItem('gameid');
+    if(gamerooms){
+      gamerooms.split(';').forEach(function(gameid){
+        $('#gamelist').append($('<li>').text("gameroom: "+ gameid));
+      });
+    }
   $('#chat').submit(function() {
     socket.emit('chat message', $('#m').val());
     $('#m').val('');
