@@ -37,13 +37,13 @@ $(function () {
     $('#messages').append($('<li>').text(data.username + ": " + data.msg));
 
   });
-  socket.on('addGameList', function(gameId) {
+  socket.on('addGameList', function(data) {
     var gamerooms = localStorage.getItem('gameid')|| '';
     if (gamerooms){
       gamerooms += ';';
     }
-    gamerooms =+ gameId;
-    localStorage.setItem('gameId',gamerooms);
+    gamerooms =+ data;
+    localStorage.setItem('gameid',gamerooms);
     $('#gamelist').append($('<li>').text("gameroom:" + gameId));
   });
 
