@@ -25,12 +25,18 @@ function guard(cardValue, cardPosition) {
 
 };
 
+// NEED IN GAME ID OF EACH PLAYER
 function priest(cardValue, cardPosition) {
   document.getElementById('player2').style.visibility = 'visible';
+  document.getElementById('player3').style.visibility = 'visible';
+  document.getElementById('player4').style.visibility = 'visible';
 };
+
 
 function baron(cardValue, cardPosition) {
   document.getElementById('player2').style.visibility = 'visible';
+  document.getElementById('player3').style.visibility = 'visible';
+  document.getElementById('player4').style.visibility = 'visible';
 };
 
 function handmaid(cardValue, cardPosition) {
@@ -99,6 +105,30 @@ $(function () {
     return false;
   });
 
+  $('#player2').click(function() {
+    $('#gameroommessages').append($('<li>').text('Player 2 chosen.'));
+    $('#player2').hide();
+    $('#player3').hide();
+    $('#player4').hide();
+    //socket.emit('targetChosen', 2);
+  });
+
+  $('#player3').click(function() {
+    $('#gameroommessages').append($('<li>').text('Player 3 chosen.'));
+    $('#player2').hide();
+    $('#player3').hide();
+    $('#player4').hide();
+    //socket.emit('targetChosen', 3);
+  });
+
+  $('#player4').click(function() {
+    $('#gameroommessages').append($('<li>').text('Player 4 chosen.'));
+    $('#player2').hide();
+    $('#player3').hide();
+    $('#player4').hide();
+    //socket.emit('targetChosen', 4);
+  });
+
   socket.on('playgame', function(player) {
     $('#playerCard1_1').attr('src', imageList[player[0] - 1]);
     $('#playerCard1_2').attr('src', imageList[player[1] - 1]);
@@ -108,7 +138,7 @@ $(function () {
   });
 
   socket.on('game-room', function(msg) {
-    $('#gameroommessages').append($('<li>').text(msg));
+    $('#gameroommessages').append($('<li>').text(currentPlayerUsername + ': ' + msg));
   });
 
   socket.on('cardPlayed', function(card) {
@@ -121,26 +151,32 @@ $(function () {
       case '1':
         guard(card.value, card.cardPosition);
         $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a Guard'));
+        $('#gameroommessages').append($('<li>').text('Choose a player and name a card other than Guard'));
         break;
       case '2':
         priest(card.value, card.cardPosition);
         $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a Priest'));
+        $('#gameroommessages').append($('<li>').text('Choose a player and look at their hand.'));
         break;
       case '3':
         baron(card.value, card.cardPosition);
         $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a Baron'));
+        $('#gameroommessages').append($('<li>').text('Choose a player and compare hands. Lowest card is knocked out of the round.'));
         break;
       case '4':
         handmaid(card.value, card.cardPosition);
         $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a Handmaid'));
+        $('#gameroommessages').append($('<li>').text('Player: ' + currentPlayerUsername + ' is immune to effects until their next turn.'));
         break;
       case '5':
         prince(card.value, card.cardPosition);
         $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a Prince'));
+        $('#gameroommessages').append($('<li>').text('Choose a player, that player will discard their hand and draw a new card.'));
         break;
       case '6':
         king(card.value, card.cardPosition);
         $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a King'));
+        $('#gameroommessages').append($('<li>').text('Choose a player and trade hands.'));
         break;
       case '7':
         countess(card.value, card.cardPosition);

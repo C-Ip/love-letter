@@ -112,10 +112,20 @@ const init = (app, server) => {
       });
     });
 
-    //socket.on('playedGuard', () => {
-      
-    //});
+    /*
+    socket.on('targetChosen', (targetPlayer) => {
+      switch(targetPlayer) {
+        case '2':
 
+        case '3':
+
+        case '4':
+
+        default:
+          console.log('INVALID');
+      }
+    });
+    */
     socket.on('joingame',() =>{
       db.joinRoom().then( (data)=>{ //joinRoom: function(request, gameRoomId) {
         var joinedRoom = gameRoomId;
