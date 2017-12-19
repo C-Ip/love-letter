@@ -228,16 +228,115 @@ module.exports = {
     }
   },
   // trade cards when prompted by card effect comes to this function
-  tradeCards: (currentPlayer,targetPlayer)=>{
-    var tempPlayerCard = currentPlayer[0].value;
-    var tempTargetCard = targetPlayer[0].value;
-    console.log(tempPlayerCard +" " + tempTargetCard);
-
-    currentPlayer[0] = tempTargetCard;
-    targetPlayer[0] = tempPlayerCard;
-    console.log(tempPlayerCard +" " + tempTargetCard);
+tradeCards: (currentPlayer, targetPlayer, player1, player2, player3, player4) => {
+    console.log('PLAS: ' + player3[0]);
+    console.log('current player: ' + currentPlayer);
+    console.log('target: ' + targetPlayer);
+    if(currentPlayer == 1) {
+      if(targetPlayer == 2) {
+        var temp = player2.pop();
+        var holder = player1.pop();
+        player1.push(temp);
+        player2.push(holder);
+        console.log('player1 newcard: '+ player1[0]);
+        console.log('player2 newcard: '+ player2[0]);
+      }
+      if(targetPlayer == 3) {
+        var temp = player3.pop();
+        var holder = player1.pop();
+        player1.push(temp);
+        player3.push(holder);
+        console.log('player1 newcard: '+ player1[0]);
+        console.log('player3 newcard: '+ player3[0]);
+      }
+      if(targetPlayer == 4) {
+        var temp = player4.pop();
+        var holder = player1.pop();
+        player1.push(temp);
+        player4.push(holder);
+        console.log('player1 newcard: '+ player1[0]);
+        console.log('player4 newcard: '+ player4[0]);
+      }
+    }
+    if(currentPlayer == 2) {
+      if(targetPlayer == 1) {
+        var temp = player2.pop();
+        var holder = player1.pop();
+        player1.push(temp);
+        player2.push(holder);
+        console.log('player1 newcard: '+ player1[0]);
+        console.log('player2 newcard: '+ player2[0]);
+      }
+      if(targetPlayer == 3) {
+        var temp = player3.pop();
+        var holder = player2.pop();
+        player3.push(temp);
+        player2.push(holder);
+        console.log('player2 newcard: '+ player2[0]);
+        console.log('player3 newcard: '+ player3[0]);
+      }
+      if(targetPlayer == 4) {
+        var temp = player2.pop();
+        var holder = player4.pop();
+        player2.push(temp);
+        player4.push(holder);
+        console.log('player2 newcard: '+ player2[0]);
+        console.log('player4 newcard: '+ player4[0]);
+      }
+    }
+    if(currentPlayer == 3) {
+      if(targetPlayer == 1) {
+        var temp = player3.pop();
+        var holder = player1.pop();
+        player1.push(temp);
+        player3.push(holder);
+        console.log('player1 newcard: '+ player1[0]);
+        console.log('player3 newcard: '+ player3[0]);
+      }
+      if(targetPlayer == 2) {
+        var temp = player3.pop();
+        var holder = player2.pop();
+        player2.push(temp);
+        player3.push(holder);
+        console.log('player2 newcard: '+ player2[0]);
+        console.log('player3 newcard: '+ player3[0]);
+      }
+      if(targetPlayer == 4) {
+        var temp = player3.pop();
+        var holder = player4.pop();
+        player4.push(temp);
+        player3.push(holder);
+        console.log('player4 newcard: '+ player4[0]);
+        console.log('player3 newcard: '+ player3[0]);
+    }
+    if(currentPlayer == 4) {
+      if(targetPlayer == 1) {
+        var temp = player1.pop();
+        var holder = player4.pop();
+        player4.push(temp);
+        player1.push(holder);
+        console.log('player4 newcard: '+ player4[0]);
+        console.log('player1 newcard: '+ player1[0]);
+      }
+      if(targetPlayer == 2) {
+        var temp = player2.pop();
+        var holder = player4.pop();
+        player4.push(temp);
+        player2.push(holder);
+        console.log('player4 newcard: '+ player4[0]);
+        console.log('player2 newcard: '+ player2[0]);
+      }
+      if(targetPlayer == 3) {
+        var temp = player3.pop();
+        var holder = player4.pop();
+        player4.push(temp);
+        player3.push(holder);
+        console.log('player4 newcard: '+ player4[0]);
+        console.log('player3 newcard: '+ player3[0]);
+      }
+    }
+    }
   },
-
   // returns true if player has no cards left
   playerCheck: (currentPlayer)=>{
     if (currentPlayer.length == 0){
