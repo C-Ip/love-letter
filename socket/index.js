@@ -182,6 +182,7 @@ const init = (app, server) => {
           break;
         case '3':
           io.sockets.in(player.gameroom).emit('baronAction', game.compareCards(1, player.targetPlayer, player1, player2, player3, player4));
+          break;
         case '4':
         case '5':
          if(player.targetPlayer == 1) {
@@ -202,7 +203,10 @@ const init = (app, server) => {
             console.log("Player4: " + player4);
           }
           io.sockets.in(player.gameroom).emit('princeAction', {target: player.targetPlayer});
+          break;
         case '6':
+          io.sockets.in(player.gameroom).emit('kingAction', game.tradeCards(1, player.targetPlayer, player1, player2, player3, player4));
+          break;
         case '7':
         case '8':
       }
