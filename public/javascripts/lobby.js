@@ -14,7 +14,7 @@ var imageList = ['/images/guard.jpg', '/images/2.jpeg', '/images/3.jpg', '/image
 
 $(function () {
   var gamerooms = localStorage.getItem('gameid');
-    if(gamerooms){
+    if(gamerooms!= 0){
       gamerooms.split(';').forEach(function(gameid){
         $('#gamelist').append($('<li>').text("gameroom: "+ gameid));
         $('#messages').append($('<li>').text(gamerooms));
@@ -32,7 +32,7 @@ $(function () {
 
   $('#gamelist').click(function(){
     $('#messages').append($('<li>').text("Trying to join game??????"));
-    socket.emit('gameselected',gameid);
+    socket.emit('gameselected',gamerooms);
   });
 
   $('#creategames').click(function() {
@@ -45,13 +45,13 @@ $(function () {
   });
   socket.on('addGameList', function(data) {
     // Should create buttons next to rooms that does socket.emit('joingame',currPlayer, gameid)
-    // Game room is still there even though I ran a rollback..
+    // Game room is  there even though I ran a rollback..
     gamerooms = localStorage.getItem('gameid')|| '';
     $('#messages').append($('<li>').text(gamerooms));
-    if (gamerooms){
+    if (gamerooms!=0){
       gamerooms += ';';
     }
-    gamerooms =+ data;
+    gamerooms += data;
     localStorage.setItem('gameid',gamerooms);
     $('#gamelist').append($('<li>').text("gameroom:" + gameroom));
     $('#gamelist').selectable();
