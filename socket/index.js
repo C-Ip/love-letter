@@ -111,7 +111,7 @@ const init = (app, server) => {
     });
 
     socket.on('gameselected',(gameid)=>{
-      console.log("gameselected");
+      console.log("gimme somthin"+ gameid);
 
     });
 
