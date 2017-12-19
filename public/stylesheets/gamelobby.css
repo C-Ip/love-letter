@@ -11,6 +11,13 @@ body {
   right: 1%;
 }
 
+#playerthumb {
+  list-style-type: none;
+  text-align:center;
+}
+#playerthumb li{
+  padding: 5px 10px;
+}
 #gamelobbychat input {
   border: 0;
   padding: 10px;

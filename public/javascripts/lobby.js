@@ -67,11 +67,9 @@ $(function () {
     gamerooms += data;
     localStorage.setItem('gameid',gamerooms);
     $('#gamelist').append($('li').text("gameroom:" + gamerooms));
-
+    });
     socket.on('readytojoin',function(data){
       joinRoom = data;
     });
-
-  });
 
 });

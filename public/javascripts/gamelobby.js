@@ -18,4 +18,10 @@ $(function () {
     $('#gamelobbymessages').append($('<li>').text(currentPlayerUsername + ': ' + msg));
   });
 
+  socket.on('playeradded',function(playerid){
+    //$('#playerthumb').append($("<li id ='"+playerid+"'>").text(playerid));
+    $('#playerthumb').append($('<li>').text("Player:" + playerid);
+    $('#gamelobbymessages').append($('<li>').text("player added"));
+  });
+
 });
