@@ -112,11 +112,17 @@ const init = (app, server) => {
 
     socket.on('gameselected',(gameid)=>{
       console.log("gimme somthin"+ gameid);
+      io.emit('readytojoin',gameid);
 
     });
 
     socket.on('joingame',(playerid) =>{
       var playerPositionId = 0;
+      db.getInGameId(data.room).then((gameid)=>{
+        playerPositionId = gameid.max +1;
+        db.joinRoom(data.player,data.room, playerPositionId);
+        var joinedRoom = data.room;
+      });
       /* Gets previous player's positionId and assigns the next person to join the next positionId
        Needs to be fixed
       db.getInGameId(gameid).then( (gameid) => {
