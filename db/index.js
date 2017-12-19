@@ -8,9 +8,9 @@ var pgp = require('pg-promise')(initOptions);
 var db = {
     host: 'localhost',
     post: 5432,
-    database: 'testdb',
-    user: 'jerrya',
-    password: 'abc123'
+    database: 'example',
+    user: 'trifoo',
+    password: '12345'
 };
 
 var connection = pgp(process.env.DATABASE_URL || db);

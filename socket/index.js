@@ -184,6 +184,24 @@ const init = (app, server) => {
           io.sockets.in(player.gameroom).emit('baronAction', game.compareCards(1, player.targetPlayer, player1, player2, player3, player4));
         case '4':
         case '5':
+         if(player.targetPlayer == 1) {
+            player1.pop();
+            game.drawCard(player1, deck);
+            console.log("Player1: " + player1);
+          } if(player.targetPlayer == 2) {
+            player2.pop();
+            game.drawCard(player2, deck);
+            console.log("Player2: " + player2);
+          } if(player.targetPlayer == 3) {
+            player3.pop();
+            game.drawCard(player3, deck);
+            console.log("Player3: " + player3);
+          } if(player.targetPlayer == 4) {
+            player4.pop();
+            game.drawCard(player4, deck);
+            console.log("Player4: " + player4);
+          }
+          io.sockets.in(player.gameroom).emit('princeAction', {target: player.targetPlayer});
         case '6':
         case '7':
         case '8':
