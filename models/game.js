@@ -227,6 +227,7 @@ module.exports = {
 
     }
   },
+  
   // trade cards when prompted by card effect comes to this function
   tradeCards: (currentPlayer,targetPlayer)=>{
     var tempPlayerCard = currentPlayer[0].value;
