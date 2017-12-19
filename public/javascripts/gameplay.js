@@ -5,6 +5,10 @@ var cardChosen = 0;
 var gameroomId = 0;
 var playedCard = 0;
 
+/*
+  This file contains all the gameplay functionality that connects to UI.
+*/
+
 // Keeps state of players in the game
 var playerImmune1 = false;
 var playerImmune2 = false;
