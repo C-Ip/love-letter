@@ -163,44 +163,72 @@ $(function () {
     }
     playedCard = card.value;
     gameroomId = card.gameid;
+
+    // If a player is immune to actions, they cannot be chosen.
+    if(card.value != 4 || card.value != 7 || card.value != 8) {
+      if(playerImmune2 && playerImmune3) {
+        $('#player2').hide();
+        $('#player3').hide();
+        $('#player4').show();
+      } else if(playerImmune2 && playerImmune4) {
+        $('#player2').hide();
+        $('#player3').show();
+        $('#player4').hide();
+      } if(playerImmune4 && playerImmune3) {
+        $('#player2').hide();
+        $('#player3').hide();
+        $('#player4').show();
+      } else if(playerImmune2) {
+        player2Immune();
+      } else if (playerImmune3) {
+        player3Immune();
+      } else if(playerImmune4) {
+        player4Immune();
+      } else {
+        showAllTargets();
+      }
+    }
+
+    // Tells all players in game room what card the current player has played and their targeted player
     switch(card.value) {
       case '1':
-        showAllTargets();
         $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a Guard'));
         $('#gameroommessages').append($('<li>').text('Choose a player.'));
         break;
       case '2':
-        showAllTargets();
         $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a Priest'));
         $('#gameroommessages').append($('<li>').text('Choose a player and look at their hand.'));
         break;
       case '3':
-        showAllTargets();
         $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a Baron'));
         $('#gameroommessages').append($('<li>').text('Choose a player and compare hands. Lowest card is knocked out of the round.'));
         break;
       case '4':
-        showAllTargets();
+        if(currPlayer == 1) {
+          playerImmune1 = true;
+        } if(currPlayer == 2) {
+          playerImmune2 = true;
+        } if(currPlayer == 3) {
+          playerImmune3 = true;
+        } if(currPlayer == 4) {
+          playerImmune4 = true;
+        }
         $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a Handmaid'));
         $('#gameroommessages').append($('<li>').text('Player: ' + currentPlayerUsername + ' is immune to effects until their next turn.'));
         break;
       case '5':
-        showAllTargets();
         $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a Prince'));
         $('#gameroommessages').append($('<li>').text('Choose a player, that player will discard their hand and draw a new card.'));
         break;
       case '6':
-        showAllTargets();
         $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a King'));
         $('#gameroommessages').append($('<li>').text('Choose a player and trade hands.'));
         break;
       case '7':
-        showAllTargets();
         $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a Countess'));
         break;
       case '8':
-        showAllTargets();
-        $('#gameroommessages').append($('<li>').text('Player %s' + currentPlayerUsername + ' has played a Princess'));
+        $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a Princess'));
         break;
       default:
         break;
@@ -224,7 +252,7 @@ $(function () {
   });
 
   socket.on('princessAction', (princessDiscarded) => {
-    if(princessDiscarded) {
+    if(!princessDiscarded) {
       $('#gameroommessages').append($('<li>').text('Princess was discarded!!!!'));
     }
   });

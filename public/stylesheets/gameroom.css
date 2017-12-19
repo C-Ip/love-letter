@@ -1,10 +1,10 @@
 #gamecontainer {
   position: fixed;
   width: 65%;
-  height: 90%;
+  height: 85%;
   left: 2%;
-  top: 8%;
-  border: 3px solid #000000;
+  top: 15%;
+  border: 1px solid #000000;
 }
 
 #begin {
@@ -29,45 +29,49 @@
 
 #deck{
   position: fixed;
-  width: 8%;
-  height: 19%;
+  width: 6%;
+  height: 17%;
   background: url(l5r.jpeg);
-  left: 27%;
-  top: 42%;
+  left: 29%;
+  top: 44%;
 
 }
 
 #playerCard1_1 {
   position: fixed;
-  width: 8%;
-  height: 19%;
+  width: 6%;
+  height: 17%;
   left: 23%;
-  bottom: 10%;
+  bottom: 8%;
 }
 
 #playerCard1_2 {
   position: fixed;
-  width: 8%;
-  height: 19%;
+  width: 6%;
+  height: 17%;
   left: 34%;
-  bottom: 10%;
+  bottom: 8%;
 }
 
 #player2 {
   position: fixed;
   left: 58%;
-  bottom: 5%;
+  bottom: 2%;
 }
 
 #playerCard2_1 {
   position: fixed;
+  width: 6%;
+  height: 17%;
   left: 50%;
-  top: 34%;
+  top: 35%;
 
 }
 
 #playerCard2_2 {
   position: fixed;
+  width: 6%;
+  height: 17%;
   left: 50%;
   top: 55%;
 
@@ -81,19 +85,19 @@
 
 #playerCard3_1 {
   position: fixed;
-  width: 8%;
-  height: 19%;
-  left: 23%;
-  top: 12%;
+  width: 6%;
+  height: 17%;
+  left: 24%;
+  top: 16%;
 
 }
 
 #playerCard3_2 {
   position: fixed;
-  width: 8%;
-  height: 19%;
-  left: 34%;
-  top: 12%;
+  width: 6%;
+  height: 17%;
+  left: 35%;
+  top: 16%;
 
 }
 
@@ -105,13 +109,17 @@
 
 #playerCard4_1 {
   position: fixed;
+  width: 6%;
+  height: 17%;
   left: 5%;
-  top: 34%;
+  top: 35%;
 
 }
 
 #playerCard4_2 {
   position: fixed;
+  width: 6%;
+  height: 17%;
   left: 5%;
   top: 55%;
 

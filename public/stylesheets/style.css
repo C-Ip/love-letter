@@ -1,11 +1,27 @@
 body {
   padding-top: 70px;
   padding-bottom: 30px;
+  top: 15%;
 }
 
+a {
+  float: left;
+}
+.main {
+  position: fixed;
+  top: 25%;
+  left: 35%;
+}
+.navbar {
+  position: fixed;
+  top: 15%;
+  width: 100%;
+}
 
 a:hover {
-  background-color: #FF5050;
+  background-color: #c0c0c0;
+  width: auto;
+  border-radius: 10px;
 }
 
 .theme-dropdown .dropdown-menu {
@@ -22,44 +38,54 @@ a:hover {
   width: auto;
 }
 
+#logo {
+  position:fixed;
+  top: 0;
+  left: 35%;
+}
 
 #games {
   position: fixed;
-  top: 10%;
+  top: 30%;
   left: 3%;
   width: 30%;
-  height: 50%;
+  height: 45%;
   border: 3px solid #73AD21;
 }
 
 #gamelobby {
   position: fixed;
-  top: 10%;
+  top: 20%;
   left: 3%;
   width: 30%;
-  height: 50%;
+  height: 40%;
   border: 3px solid #73AD21;
 }
 
 #creategames {
   position: fixed;
-  top: 60%;
+  bottom: 20%;
   left: 25%;
 }
 
 #joingame{
   position: fixed;
-  top: 60%;
+  bottom: 20%;
   left: 15%;
 }
 
 #rules {
-  text-align: center;
+  position: fixed;
   font-size: 18px;
+  top: 22%;
+  left: 35%;
 }
 
 #special {
- font-style: italic;
+  position: fixed;
+  font-size: 18px;
+  top: 47%;
+  left: 25%;
 }
 
 #gamelist .ui-selecting{
