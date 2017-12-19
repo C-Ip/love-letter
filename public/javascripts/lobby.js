@@ -26,7 +26,7 @@ $(function () {
   });
 
   $('#joingame').submit( function(){
-    socket.emit('joingame', gamerooms);
+    socket.emit('joingame', );
     alert(gamerooms);
   });
 
@@ -66,14 +66,9 @@ $(function () {
     }
     gamerooms += data;
     localStorage.setItem('gameid',gamerooms);
-<<<<<<< HEAD
     $('#gamelist').append($('li').text("gameroom:" + gamerooms));
 
 
-=======
-    $('#gamelist').append($('<li>').text("gameroom:" + gameid));
-    $('#gamelist').selectable();
->>>>>>> 77163e2289412264be725a09354ae64fea7a6a94
   });
 
 });
