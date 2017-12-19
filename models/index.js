@@ -35,7 +35,7 @@ module.exports = {
   },
 
   getInGameId: function(gameid) {
-    return db.one('SELECT max(playerpositionid) FROM playergame WHERE gameid= $1', [gameid])
+    return db.one('SELECT MAX(playerpositionid) FROM playergame WHERE gameid= $1', [gameid])
   },
 
   joinRoom: function(playerid, gameRoomId, playerpositionid) {

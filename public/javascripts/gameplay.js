@@ -184,6 +184,16 @@ $(function () {
 
   socket.on('baronAction', (winner) => {
     $('#gameroommessages').append($('<li>').text('Player ' + winner + ' won!'));
-  })
+  });
+
+  socket.on('kingAction', (player) => {
+    $('#playerCard1_1').attr('src', imageList[player[0] - 1]);
+  }
+
+  socket.on('princessAction', (princessDiscarded) => {
+    if(princessDiscarded) {
+      $('#gameroommessages').append($('<li>').text('Princess was discarded!!!!'));
+    }
+  });
 
 });

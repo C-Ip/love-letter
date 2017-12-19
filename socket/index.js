@@ -205,12 +205,16 @@ const init = (app, server) => {
           io.sockets.in(player.gameroom).emit('princeAction', {target: player.targetPlayer});
           break;
         case '6':
-          io.sockets.in(player.gameroom).emit('kingAction', game.tradeCards(1, player.targetPlayer, player1, player2, player3, player4));
+          game.tradeCards(1, player.targetPlayer, player1, player2, player3, player4);
+          if(player.currentPlayer == 1) {
+              io.sockets.in(player.gameroom).emit('kingAction', player1);
+          }
           break;
-        case '7':
         case '8':
+          io.sockets.in(player.gameroom).emit('princessAction', game.checkDiscarded(player.cardAction));
+          break;
       }
-    })
+    });
 
     socket.on('disconnect', function(data) {
       userIsConnected = false;

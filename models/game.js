@@ -59,41 +59,6 @@ module.exports = {
     deck.shift();  // Removes first card from deck
   },
 
-  playCard: (currentPlayer, card) => {
-    console.log('You played card: %s', currentPlayer[card]);
-    switch(currentPlayer[card]) {
-      case 1:
-        // action for guard
-        break;
-      case 2:
-        // action
-        break;
-      case 3:
-        // action
-        break;
-      case 4:
-        // action
-        break;
-      case 5:
-        // action
-        break;
-      case 6:
-        // action
-        break;
-      case 7:
-        // action
-        break;
-      case 8:
-        // action
-        break;
-    }
-    if(card == 0) {
-      currentPlayer.shift();
-    } else {
-      currentPlayer.pop();
-    }
-  },
-
   // Compares hands of two players, Baron's action
   compareCards: (currentPlayer, targetPlayer, player1, player2, player3, player4) => {
     console.log('PLAS: ' + player3[0]);
@@ -227,9 +192,9 @@ module.exports = {
 
     }
   },
-  
+
   // trade cards when prompted by card effect comes to this function
-tradeCards: (currentPlayer, targetPlayer, player1, player2, player3, player4) => {
+  tradeCards: (currentPlayer, targetPlayer, player1, player2, player3, player4) => {
     console.log('PLAS: ' + player3[0]);
     console.log('current player: ' + currentPlayer);
     console.log('target: ' + targetPlayer);
@@ -249,6 +214,8 @@ tradeCards: (currentPlayer, targetPlayer, player1, player2, player3, player4) =>
         player3.push(holder);
         console.log('player1 newcard: '+ player1[0]);
         console.log('player3 newcard: '+ player3[0]);
+        return player1;
+        return player3;
       }
       if(targetPlayer == 4) {
         var temp = player4.pop();
@@ -348,8 +315,8 @@ tradeCards: (currentPlayer, targetPlayer, player1, player2, player3, player4) =>
     }
   },
 
-  checkDiscarded: (targetPlayer)=>{
-    if (targetPlayer[0].value = 8){
+  checkDiscarded: (card)=>{
+    if (card == 8){
       return true;
     }
     else {return false;}
