@@ -94,18 +94,127 @@ module.exports = {
     }
   },
 
-  compareCards: (currentPlayer, targetPlayer) => {
-    var currPlayerCard = currentPlayer[0].value;
-    var targetPlayerCard = targetPlayer[0].value;
+  // Compares hands of two players, Baron's action
+  compareCards: (currentPlayer, targetPlayer, player1, player2, player3, player4) => {
+    console.log('PLAS: ' + player3[0]);
+    console.log('current player: ' + currentPlayer);
+    console.log('target: ' + targetPlayer);
+    if(currentPlayer == 1) {
+      if(targetPlayer == 2) {
+        if(player1[0] > player2[0]) {
+          player2.pop();
+          return 1;
+        } if(player1[0] < player2[0]) {
+          player1.pop();
+          return 2;
+        }
+      }
+      if(targetPlayer == 3) {
+        if(player1[0] > player3[0]) {
+          player3.pop();
+          return 1;
+        } if(player1[0] < player3[0]) {
+          player1.pop();
+          return 3;
+        }
+      }
+      if(targetPlayer == 4) {
+        if(player1[0] > player4[0]) {
+          player4.pop();
+          return 1;
+        } if(player1[0] < player4[0]) {
+          player1.pop();
+          return 4;
+        }
+      }
+    }
+    if(currentPlayer == 2) {
+      if(targetPlayer == 1) {
+        if(player2[0] > player1[0]) {
+          player1.pop();
+          return 2;
+        } if(player2[0] < player1[0]) {
+          player2.pop();
+          return 1;
+        }
+      }
+      if(targetPlayer == 3) {
+        if(player2[0] > player3[0]) {
+          player3.pop();
+          return 2;
+        } if(player2[0] < player3[0]) {
+          player2.pop();
+          return 3;
+        }
+      }
+      if(targetPlayer == 4) {
+        if(player2[0] > player4[0]) {
+          player4.pop();
+          return 2;
+        } if(player2[0] < player4[0]) {
+          player2.pop();
+          return 4;
+        }
+      }
+    }
+    if(currentPlayer == 3) {
+      if(targetPlayer == 1) {
+        if(player3[0] > player1[0]) {
+          player1.pop();
+          return 3;
+        } if(player3[0] < player1[0]) {
+          player3.pop();
+          return 1;
+        }
+      }
+      if(targetPlayer == 2) {
+        if(player3[0] > player2[0]) {
+          player2.pop();
+          return 3;
+        } if(player3[0] < player2[0]) {
+          player3.pop();
+          return 2;
+        }
+      }
+      if(targetPlayer == 4) {
+        if(player3[0] > player4[0]) {
+          player4.pop();
+          return 3;
+        } if(player3[0] < player4[0]) {
+          player3.pop();
+          return 4;
+        }
+      }
+    }
+    if(currentPlayer == 4) {
+      if(targetPlayer == 1) {
+        if(player4[0] > player1[0]) {
+          player1.pop();
+          return 4;
+        } if(player4[0] < player1[0]) {
+          player4.pop();
+          return 1;
+        }
+      }
+      if(targetPlayer == 2) {
+        if(player4[0] > player2[0]) {
+          player2.pop();
+          return 4;
+        } if(player4[0] < player2[0]) {
+          player4.pop();
+          return 2;
+        }
+      }
+      if(targetPlayer == 3) {
+        if(player4[0] > player3[0]) {
+          player3.pop();
+          return 4;
+        } if(player4[0] < player3[0]) {
+          player4.pop();
+          return 3;
+        }
+      }
 
-    if(currPlayerCard > targetPlayerCard) {
-      targetPlayer.shift();
-    }
-    if(currPlayerCard == targetPlayerCard) {
-      // Nothing happens display message
-    }
-    else {
-      currentPlayer.shift();
     }
   },
 

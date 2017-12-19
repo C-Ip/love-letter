@@ -160,6 +160,7 @@ const init = (app, server) => {
     socket.on('targetChosen', (player) => {
       console.log('Action performed: ' + player.cardAction);
       console.log('Target: ' + player.targetPlayer);
+      socket.join(player.gameroom);
       switch(player.cardAction) {
         case '1':
           console.log('Action performed: ' + player.cardAction);
@@ -177,11 +178,10 @@ const init = (app, server) => {
             targetPlayerCard = player4[0];
             console.log('Player 4 has: ' + targetPlayerCard);
           }
-          socket.join(player.gameroom);
           io.sockets.in(player.gameroom).emit('priestAction', {target: player.targetPlayer, targetHand: targetPlayerCard});
           break;
         case '3':
-
+          io.sockets.in(player.gameroom).emit('baronAction', game.compareCards(1, player.targetPlayer, player1, player2, player3, player4));
         case '4':
         case '5':
         case '6':
