@@ -47,17 +47,19 @@ module.exports = {
     deck.shift();
   },
 
-  showPlayerHand(currentPlayer, images) {
-
-  },
-    //for(i = 0; i < currentPlayer.length; i++) {
-
-    //}
-
   drawCard: (currentPlayer, deck) => {
     currentPlayer.push(deck[0]);
     deck.shift();  // Removes first card from deck
   },
+
+  playCard: (currentPlayer, card) => {
+    console.log('You played card: %s', currentPlayer[card]);
+    if(card == 0) {
+      currentPlayer.shift();
+    } else {
+      currentPlayer.pop();
+    }
+},
 
   // Compares hands of two players, Baron's action
   compareCards: (currentPlayer, targetPlayer, player1, player2, player3, player4) => {

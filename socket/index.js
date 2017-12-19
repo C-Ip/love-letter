@@ -163,7 +163,7 @@ const init = (app, server) => {
       socket.join(player.gameroom);
       switch(player.cardAction) {
         case '1':
-          console.log('Action performed: ' + player.cardAction);
+          console.log('Choose a card by entering the value on the chat');
         case '2':
           if(player.targetPlayer == 1) {
             targetPlayerCard = player1[0];
@@ -184,6 +184,7 @@ const init = (app, server) => {
           io.sockets.in(player.gameroom).emit('baronAction', game.compareCards(1, player.targetPlayer, player1, player2, player3, player4));
           break;
         case '4':
+          break;
         case '5':
          if(player.targetPlayer == 1) {
             player1.pop();
@@ -214,6 +215,22 @@ const init = (app, server) => {
           io.sockets.in(player.gameroom).emit('princessAction', game.checkDiscarded(player.cardAction));
           break;
       }
+    });
+
+    socket.on('endturn', (playerid) => {
+      db.getPlayerRoom(playerid).then( (gameroom) => {
+        socket.join(gameroom);
+        io.sockets.in(gameroom).emit('checkRemainingPlayers', {player1: game.playerCheck(player1), player2: game.playerCheck(player2), player3: game.playerCheck(player3), player4: game.playerCheck(player4)});
+      });
+      if(turnCounter == 4) {
+        turnCounter = 0;
+      } else {
+        turnCounter++;
+      }
+      console.log('Player1: ' + player1);
+      console.log('Player2: ' + player2);
+      console.log('Player3: ' + player3);
+      console.log('Player4: ' + player4);
     });
 
     socket.on('disconnect', function(data) {
