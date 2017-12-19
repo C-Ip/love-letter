@@ -5,6 +5,12 @@ var cardChosen = 0;
 var gameroomId = 0;
 var playedCard = 0;
 
+// Keeps state of players in the game
+var playerImmune1 = false;
+var playerImmune2 = false;
+var playerImmune3 = false;
+var playerImmune4 = false;
+
 var imageArray = new Array();
 var imageList = ['images/guard.jpg', '/images/2.jpeg', '/images/3.jpg', '/images/4.jpg', '/images/5.jpg', '/images/6.jpeg', '/images/7.jpg', '/images/8.jpeg'];
 for(i = 0; i < 8; i++) {
@@ -127,21 +133,25 @@ $(function () {
   });
 
   socket.on('checkRemainingPlayers', (players) => {
-    if(players.player1 == false) {
+    if(players.player1) {
       $('#playerCard1_1').removeAttr('src');
       $('#playerCard1_2').removeAttr('src');
+      playerImmune1 = true;
     }
-    if(players.player2 == false) {
+    if(players.player2) {
       $('#playerCard2_1').removeAttr('src');
       $('#playerCard2_2').removeAttr('src');
+      playerImmune2 = true;
     }
-    if(players.player3 == false) {
+    if(players.player3) {
       $('#playerCard3_1').removeAttr('src');
       $('#playerCard3_2').removeAttr('src');
+      playerImmune3 = true;
     }
-    if(players.player4 == false) {
+    if(players.player4) {
       $('#playerCard4_1').removeAttr('src');
       $('#playerCard4_2').removeAttr('src');
+      playerImmune4 = true;
     }
   });
 
@@ -206,7 +216,11 @@ $(function () {
   });
 
   socket.on('kingAction', (player) => {
-    $('#playerCard1_1').attr('src', imageList[player[0] - 1]);
+    if($('#playerCard1_1').attr('src') != "") {
+      $('#playerCard1_2').attr('src', imageList[player[0] - 1]);
+    } else {
+      $('#playerCard1_1').attr('src', imageList[player[0] - 1]);
+    }
   });
 
   socket.on('princessAction', (princessDiscarded) => {

@@ -210,6 +210,7 @@ const init = (app, server) => {
           if(player.currentPlayer == 1) {
               io.sockets.in(player.gameroom).emit('kingAction', player1);
           }
+          console.log(player1[0]);
           break;
         case '8':
           io.sockets.in(player.gameroom).emit('princessAction', game.checkDiscarded(player.cardAction));
@@ -222,15 +223,12 @@ const init = (app, server) => {
         socket.join(gameroom);
         io.sockets.in(gameroom).emit('checkRemainingPlayers', {player1: game.playerCheck(player1), player2: game.playerCheck(player2), player3: game.playerCheck(player3), player4: game.playerCheck(player4)});
       });
+      console.log('Turn: ' + turnCounter);
       if(turnCounter == 4) {
         turnCounter = 0;
       } else {
         turnCounter++;
       }
-      console.log('Player1: ' + player1);
-      console.log('Player2: ' + player2);
-      console.log('Player3: ' + player3);
-      console.log('Player4: ' + player4);
     });
 
     socket.on('disconnect', function(data) {
