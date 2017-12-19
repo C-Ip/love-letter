@@ -143,13 +143,15 @@ const init = (app, server) => {
       db.leaveRoom(playerid);
     });
 
-    socket.on('createdgame', () => {
+    socket.on('createdgame', (playerid) => {
       var gameRoom = 1;
+      io.emit('playeradded',playerid);
+      console.log(playerid);
       db.getNewestRoom().then( (data) => {
         var newRoom = data.gameid + 1;
         socket.join(newRoom);
         console.log('Room: %s created.', newRoom);
-        io.emit('addGameList',newRoom);
+        io.emit('addGameList',newRoom);     
         localStorage.setItem('gameid',newRoom);
         //console.log("gamelist appended %s", gameRoom)
       }).catch((error) => {
