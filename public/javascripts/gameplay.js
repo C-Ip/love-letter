@@ -80,7 +80,7 @@ function playFunction() {
 function endTurnFunction() {
   document.getElementById('playcard').style.visibility = 'hidden';
   document.getElementById('endturn').style.visibility = 'hidden';
-  socket.emit('startTurn');
+  socket.emit('endturn', currPlayer);
 };
 
 $(function () {
@@ -126,6 +126,25 @@ $(function () {
     $('#gameroommessages').append($('<li>').text(currentPlayerUsername + ': ' + msg));
   });
 
+  socket.on('checkRemainingPlayers', (players) => {
+    if(players.player1 == false) {
+      $('#playerCard1_1').removeAttr('src');
+      $('#playerCard1_2').removeAttr('src');
+    }
+    if(players.player2 == false) {
+      $('#playerCard2_1').removeAttr('src');
+      $('#playerCard2_2').removeAttr('src');
+    }
+    if(players.player3 == false) {
+      $('#playerCard3_1').removeAttr('src');
+      $('#playerCard3_2').removeAttr('src');
+    }
+    if(players.player4 == false) {
+      $('#playerCard4_1').removeAttr('src');
+      $('#playerCard4_2').removeAttr('src');
+    }
+  });
+
   socket.on('cardPlayed', function(card) {
     if(card.cardPosition == 0) {
       $('#playerCard1_1').removeAttr('src');
@@ -138,7 +157,7 @@ $(function () {
       case '1':
         showAllTargets();
         $('#gameroommessages').append($('<li>').text('Player ' + currentPlayerUsername + ' has played a Guard'));
-        $('#gameroommessages').append($('<li>').text('Choose a player and name a card other than Guard'));
+        $('#gameroommessages').append($('<li>').text('Choose a player.'));
         break;
       case '2':
         showAllTargets();
@@ -188,7 +207,7 @@ $(function () {
 
   socket.on('kingAction', (player) => {
     $('#playerCard1_1').attr('src', imageList[player[0] - 1]);
-  }
+  });
 
   socket.on('princessAction', (princessDiscarded) => {
     if(princessDiscarded) {
