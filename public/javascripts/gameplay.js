@@ -103,7 +103,7 @@ $(function () {
     $('#player2').hide();
     $('#player3').hide();
     $('#player4').hide();
-    //socket.emit('targetChosen', 3);
+    socket.emit('targetChosen', {currentPlayer: currPlayer, targetPlayer: 3, cardAction: playedCard, gameroom: gameroomId});
   });
 
   $('#player4').click(function() {
@@ -111,7 +111,7 @@ $(function () {
     $('#player2').hide();
     $('#player3').hide();
     $('#player4').hide();
-    //socket.emit('targetChosen', 4);
+    socket.emit('targetChosen', {currentPlayer: currPlayer, targetPlayer: 4, cardAction: playedCard, gameroom: gameroomId});
   });
 
   socket.on('playgame', function(player) {
@@ -181,5 +181,9 @@ $(function () {
   socket.on('priestAction', (target) => {
     $('#gameroommessages').append($('<li>').text('Player ' + target.target + ' has card: ' + target.targetHand));
   });
+
+  socket.on('baronAction', (winner) => {
+    $('#gameroommessages').append($('<li>').text('Player ' + winner + ' won!'));
+  })
 
 });
