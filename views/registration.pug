@@ -15,7 +15,7 @@ block content
           div.form-group
             label(for='confirmPassword') Confirm Password
             input.form-control(type='password' id='confirmPassword' placeholder='Re-enter Password' name='confirmPassword')
-          button.btn.btn-primary(id='register', type='submit') Register 
+          .g-recaptcha(data-sitekey='6LcCsz0UAAAAAH8Q12_MYN9JUzk8uJxjIioTyHYA')
+          button.btn.btn-primary(id='register', type='submit') Register
+          script(src='https://www.google.com/recaptcha/api.js')
           script(src='/javascripts/register.js')
-
-

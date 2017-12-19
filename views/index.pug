@@ -7,17 +7,36 @@ block content
   script.
     var local_data = !{JSON.stringify(user)}
   body
+    h1#chatTitle Chat Room
     #chatbox
       ul#messages
         form#chat(action='')
           input#m(autocomplete='off')
           button Send
+  h1#listTitle Game Rooms
   #games
     ul#gamelist
   form#creategames(action='/gamelobby' method='POST')
     button( type='submit') Create Game
   form#joingame(action'/gamelobby'method ='POST')
     button( type='submit') Join Game
+  #cardlist
+    h2 List of Cards
+    p Guard - Choose a player and name a card (other than Guard). If that player
+      | has that card, the player is knocked out of the round.
+    p Priest - Choose a player and look at their hand. DO NOT reveal the hand to all players.
+    p Baron - Choose one other player and secretly compare your hands. The player with
+      | the lower rank is knocked out of the round. In case of a tie, nothing happens.
+    p Handmaid - Once discarded, you become immune to the effects of other players' cards
+      | until the start of your next turn.
+    p Prince - Choose another player. That player discards their hand and draws a new card from
+      | the deck. If the deck is empty, that player draws from the card that was removed at the start
+      | of the game.
+    p King - Trade your hand with the hand of another player.
+    p Countess - Once drawn, if you have the King or Prince in hand, you must discard the Countess.
+      | You do not have to reveal the other card. You can also discard the Countess even if you
+      | do not have the King or Prince.
+    p Princess - Once discarded - in any way - you are knocked out of the round!
   script(src='https://code.jquery.com/jquery-3.1.1.min.js', integrity='sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=', crossorigin='anonymous')
   script(src='https://code.jquery.com/ui/1.12.1/jquery-ui.js')
   script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.5.3/jquery.timeago.min.js')

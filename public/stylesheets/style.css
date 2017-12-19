@@ -7,6 +7,7 @@ body {
 a {
   float: left;
 }
+
 .main {
   position: fixed;
   top: 25%;
@@ -38,9 +39,26 @@ a:hover {
   width: auto;
 }
 
+#listTitle {
+  position: fixed;
+  top: 22%;
+  left: 12%;
+}
+
+#account {
+  font-style: italic;
+  font-weight: bold;
+}
+
+#chatTitle {
+  position: fixed;
+  top: 22%;
+  right: 10%;
+}
+
 #logo {
   position:fixed;
-  top: 0;
+  top: 0%;
   left: 35%;
 }
 
@@ -50,12 +68,12 @@ a:hover {
   left: 3%;
   width: 30%;
   height: 45%;
-  border: 3px solid #73AD21;
+  border: 1px solid #5b5b5b;
 }
 
 #gamelobby {
   position: fixed;
-  top: 25%;
+  top: 30%;
   left: 3%;
   width: 30%;
   height: 40%;
@@ -76,16 +94,66 @@ a:hover {
 
 #rules {
   position: fixed;
+  top: 23%;
+  right: 29%;
+}
+
+#gamerules {
+  position: fixed;
   font-size: 18px;
-  top: 22%;
-  left: 35%;
+  width: 30%;
+  height: 30%;
+  top: 30%;
+  right: 15%;
+}
+
+#description {
+  position: fixed;
+  top: 23%;
+  left: 14%;
+}
+
+#gamedescription {
+  position: fixed;
+  font-size: 18px;
+  width: 30%;
+  height: 30%;
+  top: 30%;
+  left: 10%;
+}
+
+#outofround {
+  position: fixed;
+  bottom: 30%;
+  left: 14%;
+}
+
+#knockedout {
+  position: fixed;
+  font-size: 18px;
+  width: 35%;
+  height: 30%;
+  bottom: 0;
+  left: 8%;
+}
+
+#end {
+  position: fixed;
+  bottom: 30%;
+  right: 25%;
+}
+
+#endround {
+  position: fixed;
+  font-size: 18px;
+  width: 35%;
+  height: 30%;
+  bottom: 0;
+  right: 15%;
 }
 
 #special {
-  position: fixed;
-  font-size: 18px;
-  top: 47%;
-  left: 25%;
+  font-size: 15px;
 }
 
 #gamelist .ui-selecting{
@@ -107,5 +175,37 @@ a:hover {
 
 #gamelist li:hover{
   background-color: #FF5050;
+}
 
+#stats {
+  position: fixed;
+  width: 40%;
+  height: 40%;
+  top: 35%;
+  left: 30%;
+}
+
+#name {
+  position: static;
+  font-size: 20px;
+  text-align: center;
+}
+
+#wins {
+  position: static;
+  font-size: 20px;
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+#cardlist {
+  position: fixed;
+  font-size: 18px;
+  top: 30%;
+  left: 35%;
+  width: 30%;
+  height: 50%;
 }

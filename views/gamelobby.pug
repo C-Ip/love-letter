@@ -5,11 +5,13 @@ block content
   script.
     var local_data = !{JSON.stringify(user)}
   body
+    h1#chatTitle Chat Room
     #chatbox
       ul#gamelobbymessages
         form#gamelobbychat(action='')
           input#msg(autocomplete='off')
           button Send
+  h2#text Players in Game Lobby
   #gamelobby
     ul#playerthumb
     form#startgame(action='game' method='POST')

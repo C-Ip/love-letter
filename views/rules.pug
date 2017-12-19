@@ -3,10 +3,27 @@ extends layout
 block content
   link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    #rules
-      p 1. Each player is dealt one card at the beginning of the game.
-      p 2. Each player draws a card at the beginning of their turn.
-      p 3. You will then choose one card to discard from your hand.
-      p 4. Perform the action on the discarded card.
-      p 5. That is the end of a player's turn.
-    p#special *Win condition: If only one player is still in the round, they win. Otherwise all players reveal their hands. The player with the highest ranked card wins the round.
+    h1#rules Take a Turn
+    #gamerules
+      p 1. On your turn, draw a card and add it to your hand.
+      p 2. Choose one of the two cards in your hand to discard.
+      p 3. Perform the discarded card's action even if it's bad for you!
+      p 4. Once the action is completed, you end your turn.
+      p#special *Win condition: If only one player is still in the round, they win. Otherwise all players reveal their hands. The player with the highest ranked card wins the round.
+    h1#description About The game
+    #gamedescription
+      p Queen Marianna is arrested for high treason and her daughter Princess Annette is heartbroken.
+        | Suitors all over the City State of Tempest wish to ease the Annette's sorrow by courting her.
+        | You are one of these suitors trying to have your love letter reach the princess. You hold a secret
+        | card of who currently carries your message to the princess.
+      p Make sure the person closest to the princess holds your letter by the end of the day!!
+
+    h1#outofround Out of the Round
+    #knockedout
+      p The player is knocked out of the round if they discard the card in their hand.
+
+    h1#end End of a round
+    #endround
+      p A round ends if the deck is empty at the end of a turn. Suitors that are left must
+        | compare their secret cards and the one with the highest ranked card will win the round.
+        | In a tie, the player who discarded the highest total value of cards win!
