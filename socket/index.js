@@ -111,12 +111,22 @@ const init = (app, server) => {
     });
 
     socket.on('gameselected',(gameid)=>{
-      console.log("gimme somthin"+ gameid);
+      io.emit('readytojoin',gameid);
 
     });
 
-    socket.on('joingame',(playerid) =>{
+    socket.on('joingame',(data) =>{
+      console.log('room: %s joined.',data.room);
       var playerPositionId = 0;
+      console.log('room: %s joined.',data.room);
+      db.getInGameId(data.room).then((gameid)=>{
+        console.log('room: %s joined.',gameid.max);
+        console.log(gameid.max);
+        playerPositionId = gameid.max +1;
+        db.joinRoom(data.player, data.room, playerPositionId);
+        var joinedRoom  = data.room;
+        //socket.join(joinedRoom);
+        
       /* Gets previous player's positionId and assigns the next person to join the next positionId
        Needs to be fixed
       db.getInGameId(gameid).then( (gameid) => {
@@ -130,6 +140,7 @@ const init = (app, server) => {
         console.log("Error: " +error)
       });
       */
+    });
     });
 
     socket.on('leavegame', (playerid) => {

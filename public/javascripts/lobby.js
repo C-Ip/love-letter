@@ -8,6 +8,7 @@ var currPlayer = local_data.playerid;
 // Player's username
 var currentPlayerUsername = local_data.username;
 var socket = io();
+var joinRoom = 0;
 
 var imageList = ['/images/guard.jpg', '/images/2.jpeg', '/images/3.jpg', '/images/4.jpg', '/images/5.jpg', '/images/6.jpeg', '/images/7.jpg', '/images/8.jpeg'];
 
@@ -16,7 +17,7 @@ $(function () {
     if(gamerooms){
       gamerooms.split(';').forEach(function(gameid){
         $('#gamelist').append($('<li>').text("gameroom: "+ gameid));
-        $('#messages').append($('<li>').text(gamerooms));
+        //$('#messages').append($('<li>').text(gamerooms));
       });
     }
   $('#chat').submit(function() {
@@ -26,8 +27,7 @@ $(function () {
   });
 
   $('#joingame').submit( function(){
-    socket.emit('joingame', );
-    alert(gamerooms);
+    socket.emit('joingame',{player: currPlayer,room: joinRoom });
   });
 
   $('#gamelist li').click(function(){
@@ -68,7 +68,10 @@ $(function () {
     localStorage.setItem('gameid',gamerooms);
     $('#gamelist').append($('li').text("gameroom:" + gamerooms));
 
-
   });
+
+  socket.on('readytojoin', function(data){
+    joinRoom = data;
+  })
 
 });
