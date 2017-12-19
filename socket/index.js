@@ -182,6 +182,7 @@ const init = (app, server) => {
           break;
         case '3':
           io.sockets.in(player.gameroom).emit('baronAction', game.compareCards(1, player.targetPlayer, player1, player2, player3, player4));
+          break;
         case '4':
         case '5':
          if(player.targetPlayer == 1) {
@@ -202,11 +203,18 @@ const init = (app, server) => {
             console.log("Player4: " + player4);
           }
           io.sockets.in(player.gameroom).emit('princeAction', {target: player.targetPlayer});
+          break;
         case '6':
-        case '7':
+          game.tradeCards(1, player.targetPlayer, player1, player2, player3, player4);
+          if(player.currentPlayer == 1) {
+              io.sockets.in(player.gameroom).emit('kingAction', player1);
+          }
+          break;
         case '8':
+          io.sockets.in(player.gameroom).emit('princessAction', game.checkDiscarded(player.cardAction));
+          break;
       }
-    })
+    });
 
     socket.on('disconnect', function(data) {
       userIsConnected = false;
