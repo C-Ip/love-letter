@@ -17,6 +17,7 @@ $(function () {
     if(gamerooms){
       gamerooms.split(';').forEach(function(gameid){
         $('#gamelist').append($('<li>').text("gameroom: "+ gameid));
+        $('#messages').append($('<li>').text(gamerooms));
       });
     }
   $('#chat').submit(function() {
@@ -27,6 +28,11 @@ $(function () {
 
   $('#joingame').submit( function(){
     socket.emit('joingame', currPlayer);
+  });
+
+  $('#gamelist').click(function(){
+    $('#messages').append($('<li>').text("Trying to join game??????"));
+    socket.emit('gameselected',gameid);
   });
 
   $('#creategames').click(function() {
@@ -40,17 +46,15 @@ $(function () {
   socket.on('addGameList', function(data) {
     // Should create buttons next to rooms that does socket.emit('joingame',currPlayer, gameid)
     // Game room is still there even though I ran a rollback..
-    var gamerooms = localStorage.getItem('gameid')|| '';
+    gamerooms = localStorage.getItem('gameid')|| '';
+    $('#messages').append($('<li>').text(gamerooms));
     if (gamerooms){
       gamerooms += ';';
     }
     gamerooms =+ data;
     localStorage.setItem('gameid',gamerooms);
-    $('#gamelist').append($('<li>').text("gameroom:" + gameid));
+    $('#gamelist').append($('<li>').text("gameroom:" + gameroom));
     $('#gamelist').selectable();
-    $('#gamelist').on('click','#gamelist', function(){
-      socket.emit('gameselected',gameid);
-    });
   });
 
 });

@@ -1,6 +1,3 @@
-const ROOM_CREATED = 'room-created';
-const JOIN_ROOM = 'join-room';
-
 const socketIO = require('socket.io');
 var db = require('../models/index');
 var game = require('../models/game');
@@ -113,21 +110,6 @@ const init = (app, server) => {
       });
     });
 
-    /*
-    socket.on('targetChosen', (targetPlayer) => {
-      switch(targetPlayer) {
-        case '2':
-
-        case '3':
-
-        case '4':
-
-        default:
-          console.log('INVALID');
-      }
-    });
-    */
-
     socket.on('gameselected',(gameid)=>{
       console.log("gameselected");
 
@@ -199,6 +181,7 @@ const init = (app, server) => {
           io.sockets.in(player.gameroom).emit('priestAction', {target: player.targetPlayer, targetHand: targetPlayerCard});
           break;
         case '3':
+
         case '4':
         case '5':
         case '6':
